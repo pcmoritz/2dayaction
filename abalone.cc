@@ -3,10 +3,6 @@
 
 using namespace std;
 
-struct pos {
-	int a, b;
-};
-
 pos read_position() {
 	int p;
 	cin >> p;
