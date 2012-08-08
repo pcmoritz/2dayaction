@@ -7,7 +7,6 @@ void do_move(field& f, move m) {
 	pos b = m.b;
 	pos c = m.c;
 	int dir = m.dir;
-	
 
 	stone player = f.get_stone(a.a, a.b);
 

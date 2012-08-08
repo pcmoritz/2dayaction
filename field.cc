@@ -1,12 +1,5 @@
 #include "field.hh"
 
-int abs(int x) {
-	if(x > 0)
-		return x;
-	else
-		return -x;
-}
-
 field start_field() {
 	field f;
 	for(int i = 1; i <= 5; ++i) {

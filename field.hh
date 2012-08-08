@@ -2,6 +2,7 @@
 #define FIELD_H
 
 #include <cmath>
+#include <cstdlib>
 #include <iostream>
 #include <string>
 
@@ -25,8 +26,6 @@ enum stone {
 	EMPTY = 0, BLACK = 1, WHITE = 2
 };
 
-int abspcm(int x);
-
 class field {
 	stone stones[N+2][N+2];
 public:
@@ -43,7 +42,8 @@ public:
 		stones[a][b] = s;
 	}
 	bool is_pos_inside(int a, int b) {
-		return (a > 0) && (b > 0) && (a < 10) && (b < 10) && (abspcm(a-b) < 5);
+		return (a > 0) && (b > 0) && (a < 10) && (b < 10) &&
+			(std::abs((long)(a-b)) < 5);
 	}
 };
 
