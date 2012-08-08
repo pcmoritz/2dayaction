@@ -1,7 +1,7 @@
 #include <cmath>
 
 const int N = 9; // size of the field
-// const int K = std::ceil(N/2);
+const int K = std::ceil(N/2);
 
 struct pos {
 	int a, b;
@@ -22,7 +22,10 @@ class field {
 	stone stones[N+2][N+2];
 public:
 	field() {
-		//		for(int i = )
+		for(int i = 0; i < N+2; ++i) {
+			for(int j = 0; j < N+2; ++j)
+				stones[i][j] = EMPTY;
+		}
 	}
 	stone get_stone(int a, int b) {
 		return stones[a][b];
