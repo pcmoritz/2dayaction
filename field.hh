@@ -11,6 +11,8 @@ struct pos {
 	int a, b;
 };
 
+extern pos not_a_position;
+
 struct move {
 	pos a, b, c;
 	int dir;
@@ -42,10 +44,17 @@ public:
 	}
 };
 
+field copy_field(field f);
+
 // a field with normal start conditions (valid only for N=9)
 field start_field();
 field coordinate_field();
 
 void print_field(field f);
+
+extern const pos unitvec[6];
+pos add_pos(pos a, pos b);
+
+void do_move(field& f, move m);
 
 #endif

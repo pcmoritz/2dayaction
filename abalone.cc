@@ -43,10 +43,11 @@ int main() {
 	field f = start_field();
 	for(;;) {
 		for(int i = 0; i < 2; ++i) {
-			cout << (i ? "Black" : "White");
-			cout << ": Please specify your move!" << endl;
-			pos p = read_position();
 			print_field(f);
+			cout << (i ? "White" : "Black");
+			cout << ": Please specify your move!" << endl;
+			move m = read_move();
+			do_move(f, m);
 		}
 	}
 }

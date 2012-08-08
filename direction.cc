@@ -1,7 +1,9 @@
 #include <iostream>
 #include "field.hh"
+
 using namespace std;
-pos unitvec[6] = {{1,1},{0,1},{-1,0},{-1,-1},{0,-1},{1,0}};
+
+const pos unitvec[6] = {{1,1},{0,1},{-1,0},{-1,-1},{0,-1},{1,0}};
 
 bool is_equal(pos a, pos b) {
 	if(a.a==b.a&& a.b ==b.b) return true;
@@ -100,16 +102,16 @@ bool move_valid(pos a, pos b,pos dir,field &f) {
 }
 
 
-int main(){
-	field Feld;
-	Feld.set_stone(5,4,EMPTY);
-	Feld.set_stone(5,2,EMPTY);
+// int main(){
+// 	field Feld;
+// 	Feld.set_stone(5,4,EMPTY);
+// 	Feld.set_stone(5,2,EMPTY);
 
 	
-	Feld.set_stone(4,2,BLACK);
-	Feld.set_stone(4,1,BLACK);
-	pos b = {4,3};
-	pos a = {4,1};
+// 	Feld.set_stone(4,2,BLACK);
+// 	Feld.set_stone(4,1,BLACK);
+// 	pos b = {4,3};
+// 	pos a = {4,1};
 
-	cout << move_valid(a,b,unitvec[0],Feld)<<endl;
-}
+// 	cout << move_valid(a,b,unitvec[0],Feld)<<endl;
+// }

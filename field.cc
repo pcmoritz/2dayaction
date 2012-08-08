@@ -44,3 +44,15 @@ field coordinate_field() {
 	}
 	return f;
 }
+
+field copy_field(field f) {
+	field new_field;
+	for(int i = 0; i < N+2; ++i) {
+		for(int j = 0; j < N+2; ++j) {
+			new_field.set_stone(i, j, f.get_stone(i, j));
+		}
+	}
+	return new_field;
+}
+
+pos not_a_position = {-10, -10};
