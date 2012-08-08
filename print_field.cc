@@ -18,9 +18,3 @@ void print_field(field Field){
 		cout<<endl;
 	}
 }
-
-int main(){
-	field Field;
-	Field.set_stone(2,2,EMPTY);
-	print_field(Field);
-}

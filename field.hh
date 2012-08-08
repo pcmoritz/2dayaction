@@ -1,22 +1,26 @@
+#ifndef FIELD_H
+#define FIELD_H
+
 #include <cmath>
+#include <iostream>
 
 const int N = 9; // size of the field
-const int K = std::ceil(N/2);
+const int K = std::ceil(N/2.0);
 
 struct pos {
 	int a, b;
+};
+
+struct move {
+	pos a, b, c;
+	int dir;
 };
 
 enum stone {
 	EMPTY = 0, BLACK = 1, WHITE = 2
 };
 
-int abs(int x) {
-	if(x > 0)
-		return x;
-	else
-		return -x;
-}
+int abs(int x);
 
 class field {
 	stone stones[N+2][N+2];
@@ -25,15 +29,6 @@ public:
 		for(int i = 0; i < N+2; ++i) {
 			for(int j = 0; j < N+2; ++j)
 				stones[i][j] = EMPTY;
-		}
-		for(int i = 1; i < K; ++i) {
-			stones[K][i] = BLACK;
-		}
-		for(int i = 1; i < K+1; ++i) {
-			stones[K-1][i] = BLACK;
-		}
-		for(int i = 3; i <= K; ++i) {
-			stones[K-2][i] = BLACK;
 		}
 	}
 	stone get_stone(int a, int b) {
@@ -46,3 +41,11 @@ public:
 		return (a > 0) && (b > 0) && (a < 10) && (b < 10) && (abs(a-b) < 5);
 	}
 };
+
+// a field with normal start conditions (valid only for N=9)
+field start_field();
+field coordinate_field();
+
+void print_field(field f);
+
+#endif
