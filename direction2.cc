@@ -86,8 +86,8 @@ int main(){
  	Feld.set_stone(5,4,BLACK);
  	Feld.set_stone(5,3,BLACK);
 
-	Feld.set_stone(4,6,WHITE);
-	Feld.set_stone(4,6,WHITE);
+	Feld.set_stone(4,7,EMPTY);
+	Feld.set_stone(4,6,BLACK);
 	Feld.set_stone(4,5,WHITE);
 	
 	Feld.set_stone(4,4,BLACK);

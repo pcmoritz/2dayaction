@@ -59,22 +59,6 @@ int main() {
 		}
 	}*/
 	field Feld;
-	//cout << unitvec[0].a<<endl;
-	Feld.set_stone(5,5,WHITE);
- 	Feld.set_stone(5,4,BLACK);
- 	Feld.set_stone(5,3,BLACK);
-
-	Feld.set_stone(4,7,EMPTY);
-	Feld.set_stone(4,6,BLACK);
-	Feld.set_stone(4,5,WHITE);
-	
-	Feld.set_stone(4,4,BLACK);
-	Feld.set_stone(4,3,BLACK);
-	Feld.set_stone(4,2,BLACK);
-	
-	pos c = {4,4};
-	pos b = {4,3};	
-	pos a = {4,2};
-
- 	cout << move_valid(a,b,c,unitvec[1],Feld)<<endl;
+ 	Feld.set_stone(5,4,EMPTY);
+ 	Feld.set_stone(5,2,EMPTY);
 }

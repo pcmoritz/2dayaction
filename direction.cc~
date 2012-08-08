@@ -214,7 +214,7 @@ bool check(pos a, pos b, pos tmp, pos dir, field &f){
 
 
 
- /*int main(){
+ int main(){
  	field Feld;
  	Feld.set_stone(5,4,EMPTY);
  	Feld.set_stone(5,2,EMPTY);
@@ -225,4 +225,4 @@ bool check(pos a, pos b, pos tmp, pos dir, field &f){
 	// pos a = {4,2};
 
 // 	cout << move_valid(a,b,unitvec[0],Feld)<<endl;
- }*/
+ }
