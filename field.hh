@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <string>
 
 const int N = 9; // size of the field
 const int K = std::ceil(N/2.0);
@@ -54,7 +55,9 @@ void print_field(field f);
 
 extern const pos unitvec[6];
 pos add_pos(pos a, pos b);
+bool is_valid_pos(pos p);
 
 void do_move(field& f, move m);
+std::string number_to_string(int num);
 
 #endif

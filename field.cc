@@ -55,4 +55,8 @@ field copy_field(field f) {
 	return new_field;
 }
 
-pos not_a_position = {-10, -10};
+pos not_a_position = {-42, -42};
+
+bool is_valid_pos(pos p) {
+	return (p.a != not_a_position.a || p.b != not_a_position.b);
+}

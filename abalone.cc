@@ -1,11 +1,22 @@
 #include <iostream>
 #include "field.hh"
+#include <sstream>
 
 using namespace std;
 
+int string_to_number(std::string str) {
+	int num;
+	istringstream convert(str);
+	convert >> num;
+	return num;
+}
+
 pos read_position() {
-	int p;
-	cin >> p;
+	std::string str;
+	cin >> str;
+	if(str == std::string("n"))
+		return not_a_position;
+	int p = string_to_number(str);
 	pos position;
 	position.a = p/10;
 	position.b = p%10;
@@ -15,14 +26,11 @@ pos read_position() {
 move read_move() {
 	cout << "first stone: ";
 	pos a = read_position();
-	cout << endl;
 	cout << "second stone: ";
 	pos b = read_position();
-	cout << endl;
 	cout << "third stone: ";
 	pos c = read_position();
-	cout << endl;
-	cout << "direction (right 0, left 3, etc.): ";
+	cout << "direction (right 1, left 4, etc.): ";
 	int dir = 0;
 	cin >> dir;
 	move m;
@@ -45,7 +53,7 @@ int main() {
 		for(int i = 0; i < 2; ++i) {
 			print_field(f);
 			cout << (i ? "White" : "Black");
-			cout << ": Please specify your move!" << endl;
+			cout << ": Please specify your move ('n' for no move)!" << endl;
 			move m = read_move();
 			do_move(f, m);
 		}
