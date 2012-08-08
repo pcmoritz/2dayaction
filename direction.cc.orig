@@ -112,10 +112,18 @@ bool move_valid(pos a, pos b,pos dir,field &f) {
 // 	Feld.set_stone(5,4,EMPTY);
 // 	Feld.set_stone(5,2,EMPTY);
 
-	// Feld.set_stone(4,3,BLACK);
-	// Feld.set_stone(4,2,BLACK);
-	// pos b = {4,3};
-	// pos a = {4,2};
+	
+<<<<<<< HEAD
+// 	Feld.set_stone(4,2,BLACK);
+// 	Feld.set_stone(4,1,BLACK);
+// 	pos b = {4,3};
+// 	pos a = {4,1};
+=======
+	Feld.set_stone(4,3,BLACK);
+	Feld.set_stone(4,2,BLACK);
+	pos b = {4,3};
+	pos a = {4,2};
+>>>>>>> 7d6df8d41d059901f58fb8c59f4851445dcaa4bb
 
 // 	cout << move_valid(a,b,unitvec[0],Feld)<<endl;
 // }
