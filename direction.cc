@@ -92,11 +92,16 @@ bool move_valid(pos a, pos b,pos dir,field &f) {
 
 		}else{
 			cout<<"NPARALLEL"<<endl;
+			pos dist = sub_pos(a,b);
+			if(is_equal(unitvec[0],dist) or is_equal(unitvec[1],dist) or is_equal(unitvec[2],dist) or is_equal(unitvec[3],dist)
+			or is_equal(unitvec[4],dist) or is_equal(unitvec[5],dist)) {
+				pos tmp = add_pos(a,dir);
+				pos tmp2 = add_pos(b,dir);
+				if(f.get_stone(tmp.a,tmp.b) or f.get_stone(tmp2.a,tmp2.b)) return false;
+				else return true;
+			}
+			else return false;
 			
-			pos tmp = add_pos(a,dir);
-			pos tmp2 = add_pos(b,dir);
-			if(f.get_stone(tmp.a,tmp.b) or f.get_stone(tmp2.a,tmp2.b)) return false;
-			else return true;
 		}
 	}else return false;
 }
@@ -108,10 +113,17 @@ bool move_valid(pos a, pos b,pos dir,field &f) {
 // 	Feld.set_stone(5,2,EMPTY);
 
 	
+<<<<<<< HEAD
 // 	Feld.set_stone(4,2,BLACK);
 // 	Feld.set_stone(4,1,BLACK);
 // 	pos b = {4,3};
 // 	pos a = {4,1};
+=======
+	Feld.set_stone(4,3,BLACK);
+	Feld.set_stone(4,2,BLACK);
+	pos b = {4,3};
+	pos a = {4,2};
+>>>>>>> 7d6df8d41d059901f58fb8c59f4851445dcaa4bb
 
 // 	cout << move_valid(a,b,unitvec[0],Feld)<<endl;
 // }
