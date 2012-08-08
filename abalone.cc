@@ -1,4 +1,6 @@
-#include <stdio.h>
+#include <iostream>
+
+using namespace std;
 
 struct pos {
 	int a, b;
@@ -6,7 +8,7 @@ struct pos {
 
 pos read_position() {
 	int p;
-	p = scanf("%d", &p);
+	cin >> p;
 	pos position;
 	position.a = p/10;
 	position.b = p%10;
@@ -14,12 +16,12 @@ pos read_position() {
 }
 
 void print_position(pos p) {
-	printf("(%d, %d)", p.a, p.b);
+	cout << p.a << " " << p.b << endl;
 }
 
 int main() {
 	for (;;) {
-		printf("Please specify your move!");
+		cout << "Please specify your move!" << endl;
 		pos p = read_position();
 		print_position(p);
 	}
