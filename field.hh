@@ -26,6 +26,15 @@ public:
 			for(int j = 0; j < N+2; ++j)
 				stones[i][j] = EMPTY;
 		}
+		for(int i = 1; i < K; ++i) {
+			stones[K][i] = BLACK;
+		}
+		for(int i = 1; i < K+1; ++i) {
+			stones[K-1][i] = BLACK;
+		}
+		for(int i = 3; i <= K; ++i) {
+			stones[K-2][i] = BLACK;
+		}
 	}
 	stone get_stone(int a, int b) {
 		return stones[a][b];
