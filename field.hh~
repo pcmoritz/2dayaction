@@ -60,9 +60,6 @@ pos add_pos(pos a, pos b);
 bool is_valid_pos(pos p);
 bool is_equal(pos a, pos b);
 
-pos sub_pos(pos a, pos b);
-pos inv_dir(pos a);
-
 void do_move(field& f, move m);
 std::string number_to_string(int num);
 
