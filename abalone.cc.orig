@@ -64,45 +64,66 @@ public:
 	}
 };
 
-int count_stones(int color,field &f) {
-	int tmp = 0;
-	for(int i=0;i<11;i++) {
-		for(int j=0;j<11;j++) {
-			if(f.is_pos_inside(i, j)) {
-				if(f.get_stone(i,j)==color) tmp+=1;
-
-			} else {
-				f.set_stone(i,j,EMPTY);
-			}	
+class nick_ai_player {
+	std::string player_name;
+	// this function has to ensure that in "move", nothing like
+	// {a = valid_move, b = invalid_move, c = valid_move} happens
+public:
+	nick_ai_player(std::string name) : player_name(name) { }
+	move operator()(field& f) {
+		
+		move Test;
+		while(is_equal(Test.a,not_a_position)){	
+			Test = ki_do_move(f);
 		}
+		//print_move(Test);
+		
+		return Test;
 	}
-	return tmp;
-}
+};
 
-bool check_victory(field &f){
-	if(count_stones(WHITE,f)<7){
-		std::cout<<"BLACK won!"<<std::endl;
-		return true;
-	}
-	if(count_stones(BLACK,f)<7){
-		std::cout<<"White won!"<<std::endl;	
-	}
-}
+
 
 int main() {
 	field f = start_field();
+<<<<<<< HEAD
+	//possible_moves(f, BLACK);
+	/*print_field(f);
+	InitRandom();
+	move Test;
+	while(is_equal(Test.a,not_a_position)){	
+		Test = ki_do_move(f);
+	}
+	do_move(f,Test);
+	//print_move(Test);
+	print_field(f);*/
+	InitRandom();
+	
+	//human_player player_one = human_player("Black");
+	nick_ai_player player_one = nick_ai_player("BLACK");
+	nick_ai_player player_two = nick_ai_player("White");
+=======
 	
 	alpha_beta_player player_one = alpha_beta_player("Black", BLACK);
 	alpha_beta_player player_two = alpha_beta_player("White", WHITE);
+>>>>>>> 5cd194160225db73ee9427c3db43700fb95617f6
 
+	int tmp;
 	for(;;) {
 		print_field(f);
-		do_move(f, player_one(f));
-		if(check_victory(f)) break;
-		//std::getchar();
-		//print_field(f);
+<<<<<<< HEAD
+		ki_color = BLACK;
 		do_move(f, player_two(f));
-		if(check_victory(f)) break;
-		//std::getchar();
+		print_field(f);
+		ki_color = WHITE;
+		do_move(f, player_one(f));
+		std::cin>>tmp;
+=======
+		do_move(f, player_one(f));
+		std::getchar();
+		print_field(f);
+		do_move(f, player_two(f));
+		std::getchar();
+>>>>>>> 5cd194160225db73ee9427c3db43700fb95617f6
 	}
 }

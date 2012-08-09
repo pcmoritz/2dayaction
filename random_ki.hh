@@ -5,7 +5,7 @@ using std::srand;
 using std::rand;
 #include "rnd.h"
 
-int ki_color = 1;
+int ki_color = WHITE;
 
 
 int get_random_dir(){ 
@@ -49,11 +49,13 @@ pos find_neighbor(pos a,field &Field){
 }
 
 move ki_do_move(field &Field) {
+	//InitRandom();
 	int a=rndint(1,9);
 	int b=rndint(1,9);
-	while(!Field.get_stone(a,b)==ki_color) {
+	while(!(Field.get_stone(a,b)==ki_color)) {
 		a=rndint(1,9);
-		b=rndint(1,9);		
+		b=rndint(1,9);
+		//std::cout<<a<<"\t"<<b<<std::endl;		
 	}
 	//std::cout << "found stone at pos:"<< a<<"\t"<<b<<std::endl;
 	pos tmp;
@@ -64,7 +66,7 @@ move ki_do_move(field &Field) {
 		//std::cout<< "found Neighbor"<<std::endl;
 		pos tmp3 = sub_pos(tmp2,tmp);
 		tmp3 = add_pos(tmp2,tmp3);		
-		if(Field.get_stone(tmp3.a,tmp3.b)==ki_color) {
+		if(!(Field.get_stone(tmp3.a,tmp3.b)==ki_color)) {
 			//std::cout<<"trying to move 3 stones"<<std::endl;
 			
 			//Move three stones
