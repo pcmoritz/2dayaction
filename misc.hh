@@ -70,12 +70,13 @@ int count_stones(int color,field &f) {
 	return tmp;
 }
 
-bool check_victory(field &f){
+stone check_victory(field &f){
 	if(count_stones(WHITE,f)<7){
-		std::cout<<"BLACK won!"<<std::endl;
-		return true;
-	}
+		//std::cout<<"BLACK won!"<<std::endl;
+		return BLACK;
+	}else
 	if(count_stones(BLACK,f)<7){
-		std::cout<<"White won!"<<std::endl;	
-	}
+		//std::cout<<"White won!"<<std::endl;
+		return WHITE;
+	}else return EMPTY;
 }
