@@ -1,6 +1,8 @@
 #include <iostream>
 #include "field.hh"
 #include <sstream>
+#include <cstdio>
+#include "alpha-beta-ki.hh"
 
 using namespace std;
 
@@ -50,10 +52,11 @@ void print_position(pos p) {
 
 class human_player {
 	std::string player_name;
+	stone player;
 	// this function has to ensure that in "move", nothing like
 	// {a = valid_move, b = invalid_move, c = valid_move} happens
 public:
-	human_player(std::string name) : player_name(name) { }
+	human_player(std::string name) : player_name(name), player(WHITE) { }
 	move operator()(field& f) {
 		std::cout << player_name +
 			std::string(": Please specify your move ('n' for no move)!");
@@ -66,13 +69,15 @@ public:
 int main() {
 	field f = start_field();
 	
-	human_player player_one = human_player("Black");
-	human_player player_two = human_player("White");
+	alpha_beta_player player_one = alpha_beta_player("Black", BLACK);
+	alpha_beta_player player_two = alpha_beta_player("White", WHITE);
 
 	for(;;) {
 		print_field(f);
 		do_move(f, player_one(f));
+		std::getchar();
 		print_field(f);
 		do_move(f, player_two(f));
+		std::getchar();
 	}
 }
