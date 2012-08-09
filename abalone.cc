@@ -5,6 +5,7 @@
 #include "alpha-beta-ki.hh"
 #include <time.h>
 #include "nick_ki.hh"
+#include "Uli_ki.hh"
 #include "misc.hh"
 
 using namespace std;
@@ -29,21 +30,21 @@ int main() {
 	std::srand(time(NULL));
 	field f = start_field();
 	
-	nick_player player_one("Black", BLACK,1,2,1);
-	nick_player player_two("White", WHITE);
+	nick_player player_one("Black", BLACK,1,2,1);   // rot
+	Uli_player player_two("White", WHITE);		// grün
 	
 	move player_move;
 	for(;;) {
 		player_move = player_one(f);
 		do_move(f,player_move);
-		//print_field(f);
-		//std::getchar();
+		print_field(f);
+		std::getchar();
 		if(check_victory(f)) break;
 	
 		player_move = player_two(f);
 		do_move(f,player_move);
-		//print_field(f);
-		//std::getchar();
+		print_field(f);
+		std::getchar();
 		if(check_victory(f)) break;
 	}
 }
