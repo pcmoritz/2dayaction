@@ -132,14 +132,61 @@ void search_three(field& f, stone player, std::list<move>& list) {
 							// finally free
 							for(int dir = 0; dir <= 5; ++dir) {
 								// first the parallel case
+								// same direction a b c d e
 								if(dir == delta) {
-									pos d = add_pos_dir(c.a, c.b, delta);
+									pos d = add_pos_dir(c.a, c.b, dir);
 									if(position_free(f, d))
 										add_move_three(list, a, b, c, dir);
-									// Wegschiebfall
+									if(different_players(player, f.get_stone(d))) {
+										// Wegschiebfall, ein Stein
+										if(f.get_stone(add_pos_dir(d.a, d.b, dir)) == 0) {
+											add_move_three(list, a, b, c, dir);
+										}
+										else {
+											// Wegschiebefall, zwei Steine
+											pos e = add_pos_dir(d.a, d.b, dir);
+											if(different_players(player, f.get_stone(e))) {
+												if(f.get_stone(add_pos_dir(e.a, e.b, dir)) == 0) {
+													add_move_three(list, a, b, c, dir);
+												}
+											}
+										}
+									}
 								}
-							}
-						}						
+								// opposite direction e d a b c
+								if((delta + 3 - dir) % 6 == 0) {
+									pos d = add_pos_dir(a.a, a.b, dir);
+									if(position_free(f, d))
+										add_move_three(list, a, b, c, dir);
+									if(different_players(player, f.get_stone(d))) {
+										// Wegschiebfall, ein Stein
+										if(f.get_stone(add_pos_dir(d.a, d.b, dir)) == 0) {
+											add_move_three(list, a, b, c, dir);
+										}
+										else {
+											// Wegschiebefall, zwei Steine
+											pos e = add_pos_dir(d.a, d.b, dir);
+											if(different_players(player, f.get_stone(e))) {
+												if(f.get_stone(add_pos_dir(e.a, e.b, dir)) == 0) {
+													add_move_three(list, a, b, c, dir);
+												}
+											}
+										}
+									}
+								}
+								// non-parallel case
+								else {
+									pos x = add_pos_dir(a.a, a.b, dir);
+									pos y = add_pos_dir(b.a, b.b, dir);
+									pos z = add_pos_dir(c.a, c.b, dir);
+									if(position_free(f, x) && position_free(f, y) &&
+										 position_free(f, z)) {
+										add_move_three(list, a, b, c, dir);
+										// YAY
+									}
+								}
+							}						
+						}
 					}
 				}
 			}
@@ -148,13 +195,13 @@ void search_three(field& f, stone player, std::list<move>& list) {
 }
 
 
-
 std::list<move> possible_moves(field& f, stone player) {
 	std::list<move> list;
 
-	search_one(f, player, list);
-	std::cout << std::endl;
-	search_two(f, player, list);
+	//	search_one(f, player, list);
+	//	std::cout << std::endl;
+	//	search_two(f, player, list);
+	search_three(f, player, list);
 	
 	return list;
 }
