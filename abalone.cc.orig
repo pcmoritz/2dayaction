@@ -3,50 +3,10 @@
 #include <sstream>
 #include <cstdio>
 #include "alpha-beta-ki.hh"
+#include <time.h>
+#include "nick_ki.hh"
 
 using namespace std;
-
-int string_to_number(std::string str) {
-	int num;
-	istringstream convert(str);
-	convert >> num;
-	return num;
-}
-
-pos read_position() {
-	std::string str;
-	cin >> str;
-	if(str == std::string("n"))
-		return not_a_position;
-	int p = string_to_number(str);
-	pos position;
-	position.a = p/10;
-	position.b = p%10;
-	return position;
-}
-
-move read_move() {
-	std::cout << std::endl;
-	cout << "first stone: ";
-	pos a = read_position();
-	cout << "second stone: ";
-	pos b = read_position();
-	cout << "third stone: ";
-	pos c = read_position();
-	cout << "direction (right 1, left 4, etc.): ";
-	int dir = 0;
-	cin >> dir;
-	move m;
-	m.a = a;
-	m.b = b;
-	m.c = c;
-	m.dir = dir;
-	return m;
-}
-
-void print_position(pos p) {
-	cout << p.a << " " << p.b << endl;
-}
 
 // protocol for AI:
 
@@ -64,66 +24,97 @@ public:
 	}
 };
 
-class nick_ai_player {
-	std::string player_name;
-	// this function has to ensure that in "move", nothing like
-	// {a = valid_move, b = invalid_move, c = valid_move} happens
-public:
-	nick_ai_player(std::string name) : player_name(name) { }
-	move operator()(field& f) {
-		
-		move Test;
-		while(is_equal(Test.a,not_a_position)){	
-			Test = ki_do_move(f);
+<<<<<<< HEAD
+int count_stones(int color,field &f) {
+	int tmp = 0;
+	for(int i=0;i<11;i++) {
+		for(int j=0;j<11;j++) {
+			if(f.is_pos_inside(i, j)) {
+				if(f.get_stone(i,j)==color) tmp+=1;
+
+			} else {
+				f.set_stone(i,j,EMPTY);
+			}	
 		}
-		//print_move(Test);
-		
-		return Test;
 	}
-};
+	return tmp;
+}
 
-
+bool check_victory(field &f){
+	if(count_stones(WHITE,f)<7){
+		std::cout<<"BLACK won!"<<std::endl;
+		print_field(f);
+		return true;
+	}
+	if(count_stones(BLACK,f)<7){
+		std::cout<<"White won!"<<std::endl;	
+		print_field(f);
+		return true;
+	}
+}
+=======
+>>>>>>> 279deced863f4dbf752f9e3dd7dd3724278bdc33
 
 int main() {
+	std::srand(time(NULL));
 	field f = start_field();
-<<<<<<< HEAD
-	//possible_moves(f, BLACK);
-	/*print_field(f);
-	InitRandom();
-	move Test;
-	while(is_equal(Test.a,not_a_position)){	
-		Test = ki_do_move(f);
-	}
-	do_move(f,Test);
-	//print_move(Test);
-	print_field(f);*/
-	InitRandom();
-	
-	//human_player player_one = human_player("Black");
-	nick_ai_player player_one = nick_ai_player("BLACK");
-	nick_ai_player player_two = nick_ai_player("White");
-=======
 	
 	alpha_beta_player player_one = alpha_beta_player("Black", BLACK);
-	alpha_beta_player player_two = alpha_beta_player("White", WHITE);
->>>>>>> 5cd194160225db73ee9427c3db43700fb95617f6
-
-	int tmp;
+	nick_player player_two("White", WHITE);
+	
+	move player_move;
 	for(;;) {
-		print_field(f);
+		//print_field(f);
+		player_move = player_one(f);
+		do_move(f,player_move);	
+		//print_field(f);
+		//print_move(player_move);
+		//do_move(f,player_move);
 <<<<<<< HEAD
-		ki_color = BLACK;
-		do_move(f, player_two(f));
-		print_field(f);
-		ki_color = WHITE;
-		do_move(f, player_one(f));
-		std::cin>>tmp;
+		/*if(move_valid(player_move,f)){
+			do_move(f,player_move);	
+		}else{
+			std::cout<<"Black cheated"<<std::endl;
+			print_field(f);
+			print_move(player_move);
+			std::getchar();
+		}*/
 =======
-		do_move(f, player_one(f));
-		std::getchar();
-		print_field(f);
-		do_move(f, player_two(f));
-		std::getchar();
->>>>>>> 5cd194160225db73ee9427c3db43700fb95617f6
+    //if(move_valid(player_move,f)){
+			do_move(f,player_move);	
+		//}else{
+			//std::cout<<"Black cheated"<<std::endl;
+			//print_field(f);
+			//print_move(player_move);
+			//std::getchar();
+		//}
+>>>>>>> 279deced863f4dbf752f9e3dd7dd3724278bdc33
+		if(check_victory(f)) break;
+		//print_field(f);
+		//std::getchar();
+		//print_field(f);
+		player_move = player_two(f);
+<<<<<<< HEAD
+		do_move(f,player_move);	
+		/*if(move_valid(player_move,f)){
+			do_move(f,player_move);
+		}else{
+			std::cout<<"White cheated"<<std::endl;
+			print_field(f);
+			print_move(player_move);
+			std::getchar();	
+		}*/
+=======
+		//if(move_valid(player_move,f)){
+			do_move(f,player_move);
+		//}else{
+	//		std::cout<<"White cheated"<<std::endl;
+	//		print_field(f);
+	//		print_move(player_move);
+	//		std::getchar();	
+	//	}
+>>>>>>> 279deced863f4dbf752f9e3dd7dd3724278bdc33
+		if(check_victory(f)) break;
+		//std::getchar();
 	}
 }
