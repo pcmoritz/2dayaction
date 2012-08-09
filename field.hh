@@ -70,18 +70,13 @@ extern const pos unitvec[6];
 void print_position(pos p);
 field test_field();
 
+void do_move(field& f, move m);
 std::string number_to_string(int num);
 
 void possible_moves(field& f, stone player, std::list<move>* list);
 bool is_valid_pos(pos p);
 
 double UH1_field(field& f, int player);
-
-// ---------- Move ----------------------
-
-void do_move(field& f, move m);
-move convert2unsorted(listmove m);
-listmove convert2list(move m);
 
 // ---------- Direction -----------------
 
