@@ -41,11 +41,11 @@ field coordinate_field() {
 field test_field() {
 	field f;
 	//f.set_stone(2,2,WHITE);
-	f.set_stone(3,3,BLACK);
-	f.set_stone(4,4,BLACK);
-	f.set_stone(5,5,BLACK);
-	f.set_stone(5,5,WHITE);
-	//f.set_stone(6,6,WHITE);
+	f.set_stone(1,1,BLACK);
+	f.set_stone(2,1,BLACK);
+	f.set_stone(3,1,BLACK);
+	f.set_stone(4,1,WHITE);
+	f.set_stone(5,1,BLACK);
 	return f;
 }
 

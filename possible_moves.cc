@@ -77,7 +77,7 @@ void search_two(field& f, stone player, std::list<move>& list) {
 								}
 							}
 							// opposite direction
-							if((delta + 3 - dir) % 6 == 0) {
+							else if((delta + 3 - dir + 6) % 6 == 0) {
 								if(position_free(f, add_pos_dir(p.a, p.b, dir)))
 									add_move_two(list, p, other, dir);
 
@@ -154,7 +154,7 @@ void search_three(field& f, stone player, std::list<move>& list) {
 									}
 								}
 								// opposite direction e d a b c
-								if((delta + 3 - dir) % 6 == 0) {
+								else if((delta + 3 - dir + 6) % 6 == 0) {
 									pos d = add_pos_dir(a.a, a.b, dir);
 									if(position_free(f, d))
 										add_move_three(list, a, b, c, dir);
@@ -198,9 +198,9 @@ void search_three(field& f, stone player, std::list<move>& list) {
 std::list<move> possible_moves(field& f, stone player) {
 	std::list<move> list;
 
-	//	search_one(f, player, list);
-	//	std::cout << std::endl;
-	//	search_two(f, player, list);
+	search_one(f, player, list);
+	std::cout << std::endl;
+	search_two(f, player, list);
 	search_three(f, player, list);
 	
 	return list;

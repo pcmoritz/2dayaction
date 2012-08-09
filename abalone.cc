@@ -58,6 +58,6 @@ int main() {
 	// 		do_move(f, m);
 	// 	}
 	// }
-	field f = test_field();
+	field f = start_field();
 	possible_moves(f, BLACK);
 }
