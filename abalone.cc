@@ -75,17 +75,4 @@ int main() {
 		print_field(f);
 		do_move(f, player_two(f));
 	}
-	
-	// field f = start_field();
-	// for(;;) {
-	// 	for(int i = 0; i < 2; ++i) {
-	// 		print_field(f);
-	// 		cout << (i ? "White" : "Black");
-	// 		cout << ": Please specify your move ('n' for no move)!" << endl;
-	// 		move m = read_move();
-	// 		do_move(f, m);
-	// 	}
-	// }
-	// field f = start_field();
-	// possible_moves(f, BLACK);
 }

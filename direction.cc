@@ -212,8 +212,44 @@ bool check(pos a, pos b, pos tmp, pos dir, field &f){
 			  return true;
 }
 
+bool is_pos_inside(pos a) {
+	
+		return (a.a > 0) && (a.b > 0) && (a.a < 10) && (a.b < 10) &&
+			(std::abs((long)(a.a-a.b)) < 5);
+	}
 
 
+bool is_over_bord(move Move) {
+	pos tmp = Move.a;
+	pos dir = unitvec[Move.dir];
+	tmp = add_pos(tmp,dir);
+	//
+	if(is_pos_inside(tmp)){
+		pos tmp2 = Move.b;
+		cout << "1 is inside"<<endl;
+
+		if(is_valid_pos(tmp2)) {
+			tmp2 = add_pos(tmp2,dir);
+
+			if(is_pos_inside(tmp2)) {
+				pos tmp3 = Move.c;
+				cout << "2 is inside"<<endl;
+
+				if(is_valid_pos(tmp3)) {
+					tmp3 = add_pos(tmp3,dir);
+
+					if(is_pos_inside(tmp3)) {
+						return false;
+					}else return true;
+
+				}else return false;
+
+			} else return true;
+		}
+		else return false;
+	}
+	else return true;
+}
  /*int main(){
  	field Feld;
  	Feld.set_stone(5,4,EMPTY);
