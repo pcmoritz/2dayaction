@@ -1,5 +1,6 @@
 #include "field.hh"
 #include <iostream>
+#include "alpha-beta-ki.hh"
 
 void print_position(pos p) {
 	std::cout << p.a << " " << p.b << std::endl;
