@@ -1,15 +1,10 @@
 #include <iostream>
-#include "field.hh"
 #include <sstream>
-#include <cstdio>
-#include "alpha-beta-ki.hh"
-#include <time.h>
-#include "nick_ki.hh"
-#include "misc.hh"
+#include "field.hh"
 
 using namespace std;
 
-/*void print_move(move Move){
+void print_move(move Move){
 	print_position(Move.a);
 	print_position(Move.b);
 	print_position(Move.c);
@@ -57,25 +52,10 @@ move read_move() {
 
 void print_position(pos p) {
 	cout << p.a << " " << p.b << endl;
-}*/
+}
 
-// protocol for AI:
 
-class human_player {
-	std::string player_name;
-	stone player;
-	// this function has to ensure that in "move", nothing like
-	// {a = valid_move, b = invalid_move, c = valid_move} happens
-public:
-	human_player(std::string name) : player_name(name), player(WHITE) { }
-	move operator()(field& f) {
-		std::cout << player_name +
-			std::string(": Please specify your move ('n' for no move)!");
-		return read_move();
-	}
-};
-
-/*int count_stones(int color,field &f) {
+int count_stones(int color,field &f) {
 	int tmp = 0;
 	for(int i=0;i<11;i++) {
 		for(int j=0;j<11;j++) {
@@ -97,25 +77,5 @@ bool check_victory(field &f){
 	}
 	if(count_stones(BLACK,f)<7){
 		std::cout<<"White won!"<<std::endl;	
-	}
-}*/
-
-int main() {
-	std::srand(time(NULL));
-	field f = start_field();
-	
-	alpha_beta_player player_one = alpha_beta_player("Black", BLACK);
-	nick_player player_two("White", WHITE);
-	
-	move player_move;
-	for(;;) {
-		player_move = player_one(f);
-		do_move(f,player_move);
-		
-		if(check_victory(f)) break;
-	
-		player_move = player_two(f);
-		do_move(f,player_move);
-		if(check_victory(f)) break;
 	}
 }

@@ -101,7 +101,7 @@ void do_move(field& f, move m) {
 		f.set_stone(next_c.a, next_c.b, player);
 }
 
-int main() {
+/* main() {
 	move m;
 	m.a.a = 5;
 	m.a.b = 3;
@@ -112,4 +112,4 @@ int main() {
 	m.dir = 2;
   listmove M=convert2list(m);
   print_move(convert2unsorted(M));
-}
+}*/
