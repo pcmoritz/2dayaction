@@ -2,6 +2,8 @@
 #include "field.hh"
 #include <algorithm>
 #include <vector>
+#include <cstdio>
+#include "alpha-beta-ki.hh"
 
 // ein Kommentar
 
@@ -43,7 +45,7 @@ public:
 		  
 		  Bewertung = UH1(f_hyp, player);
 		  if (temp<Bewertung) {temp = Bewertung; aktuellbesterZug = n;}
-		cout << "Zug Nummer: " << n << " mit Bewertung: " << Bewertung << " temp:" << temp << endl;		  
+		//cout << "Zug Nummer: " << n << " mit Bewertung: " << Bewertung << " temp:" << temp << endl;		  
 		}
 		return v[aktuellbesterZug];
 // 		std::copy(list.begin(), list.end(), v.begin());
@@ -56,11 +58,80 @@ void print_position(pos p) {
 	cout << p.a << " " << p.b << endl;
 }
 
+int count_stones(int color,field &f) {
+	int tmp = 0;
+	for(int i=0;i<11;i++) {
+		for(int j=0;j<11;j++) {
+			if(f.is_pos_inside(i, j)) {
+				if(f.get_stone(i,j)==color) tmp+=1;
+
+			} else {
+				f.set_stone(i,j,EMPTY);
+			}	
+		}
+	}
+	return tmp;
+}
+
+bool check_victory(field &f){
+	if(count_stones(WHITE,f)<7){
+		std::cout<<"BLACK won!"<<std::endl;
+		return true;
+	}
+	if(count_stones(BLACK,f)<7){
+		std::cout<<"White won!"<<std::endl;	
+	}
+}
+
+
 // suche mögliche Züge für
 // 1 Kugel
 int main(){
 
+
+	std::srand(time(NULL));
 	field f = start_field();
+	
+	//alpha_beta_player player_one = alpha_beta_player("Black", BLACK);
+	Uli_player player_one("Uli", BLACK);
+	alpha_beta_player player_two("White", WHITE);
+	
+	move player_move;
+	for(;;) {
+		//print_field(f);
+		player_move = player_one(f);
+		//print_field(f);
+		//print_move(player_move);
+		do_move(f,player_move);
+		/*if(move_valid(player_move,f)){
+			do_move(f,player_move);	
+		}else{
+			std::cout<<"Black cheated"<<std::endl;
+			print_field(f);
+			print_move(player_move);
+			std::getchar();
+		}*/
+		if(check_victory(f)) break;
+		print_field(f);
+		std::getchar();
+		//print_field(f);
+		player_move = player_two(f);
+		do_move(f,player_move);
+		print_field(f);
+		std::getchar();
+		/*if(move_valid(player_move,f)){
+			do_move(f,player_move);
+		}else{
+			std::cout<<"White cheated"<<std::endl;
+			print_field(f);
+			print_move(player_move);
+			std::getchar();	
+		}*/
+		if(check_victory(f)) break;
+		//std::getchar();
+	}
+
+	/*field f = start_field();
 	std::list<move> list;
 	possible_moves(f, BLACK, &list);
 	
@@ -84,7 +155,9 @@ int main(){
 	cout << "vor move"<< endl;
 	do_move(f,m);
 	cout << "nach move"<< endl;
-	print_field(f);
+	print_field(f);*/
+
+
 return 0;
 }
 
