@@ -5,6 +5,6 @@ random_nick:
 bijan:
 	g++ direction2.cc print_field.cc field.cc move.cc direction.cc -o a.out
 nick:
-	g++ abalone.cc print_field.cc field.cc move.cc direction.cc -o a.out
+	g++ abalone.cc print_field.cc field.cc move.cc direction.cc possible_moves.cc random_ki.hh -o a.out
 pcmoritz:
 	g++ pcmoritz_main.cc print_field.cc field.cc move.cc direction.cc possible_moves.cc -o a.out
