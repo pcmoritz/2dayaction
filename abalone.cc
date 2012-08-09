@@ -48,14 +48,16 @@ void print_position(pos p) {
 
 
 int main() {
-	field f = start_field();
-	for(;;) {
-		for(int i = 0; i < 2; ++i) {
-			print_field(f);
-			cout << (i ? "White" : "Black");
-			cout << ": Please specify your move ('n' for no move)!" << endl;
-			move m = read_move();
-			do_move(f, m);
-		}
-	}
+	// field f = start_field();
+	// for(;;) {
+	// 	for(int i = 0; i < 2; ++i) {
+	// 		print_field(f);
+	// 		cout << (i ? "White" : "Black");
+	// 		cout << ": Please specify your move ('n' for no move)!" << endl;
+	// 		move m = read_move();
+	// 		do_move(f, m);
+	// 	}
+	// }
+	field f = test_field();
+	possible_moves(f, BLACK);
 }

@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
+#include <list>
 
 const int N = 9; // size of the field
 const int K = std::ceil(N/2.0);
@@ -38,6 +39,9 @@ public:
 	stone get_stone(int a, int b) {
 		return stones[a][b];
 	}
+	stone get_stone(pos p) {
+		return get_stone(p.a, p.b);
+	}
 	void set_stone(int a, int b, stone s) {
 		stones[a][b] = s;
 	}
@@ -63,7 +67,12 @@ bool is_equal(pos a, pos b);
 pos sub_pos(pos a, pos b);
 pos inv_dir(pos a);
 
+void print_position(pos p);
+field test_field();
+
 void do_move(field& f, move m);
 std::string number_to_string(int num);
+
+std::list<move> possible_moves(field& f, stone player);
 
 #endif
