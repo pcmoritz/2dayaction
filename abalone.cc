@@ -58,6 +58,21 @@ int main() {
 	// 		do_move(f, m);
 	// 	}
 	// }
+	
 	field f = start_field();
-	possible_moves(f, BLACK);
+	//possible_moves(f, BLACK);
+	print_field(f);
+
+	//is_over_bord test	
+	/*pos a,b,c;
+	a.a = 1;
+	a.b = 4;
+	b.a = 1;
+	b.b = 5;
+	move Test;
+	Test.a =a;
+	Test.b = b;
+	//Test.c = not_a_position;
+	Test.dir = 4;
+	cout << is_over_bord(Test)<<endl;*/	
 }
