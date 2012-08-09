@@ -2,7 +2,7 @@
 #include "field.hh"
 #include <sstream>
 #include <cstdio>
-#include "alpha-beta-ki.hh"
+#include "alpha-beta-extended.hh"
 #include <time.h>
 #include "nick_ki.hh"
 #include "misc.hh"
@@ -66,7 +66,7 @@ int main() {
 	field f = start_field();
 	
 	nick_player player_one("Black", BLACK,1,2,1);
-	alpha_beta_player player_two("White", WHITE);
+	alpha_beta_player_extended player_two("White", WHITE);
 	func(f,player_one,player_two);
 	
 	/*move player_move;
