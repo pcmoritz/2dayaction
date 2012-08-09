@@ -128,9 +128,9 @@ bool move_valid(pos a, pos b, pos c, pos dir, field &f) {
     if ( is_equal(c, add_pos(a,dist) ) or is_equal(c, sub_pos(b,dist) ) ) {
         // 3 in a row
 		  if(is_equal(dist,dir) or is_equal(dist,inv_dir(dir)) ) { 
-        // c is in front
-        if ( is_equal(sub_pos(c,dir),a) or is_equal(sub_pos(c,dir),b) ) {
-				//cout<<"c is in front"<<endl;
+        // parallel
+        if ( is_equal(sub_pos(c,dir),a) or is_equal(add_pos(c,dir),b) ) {
+        // cout<<"c is in front"<<endl;
 				pos tmp = add_pos(c,dir);
         return check(a,b,tmp,dir,f);
 			  }
@@ -218,11 +218,12 @@ bool check(pos a, pos b, pos tmp, pos dir, field &f){
  	          }
           }
         }
-			  return true;
+        else{ 
+          return true;
+        }
 }
 
 bool is_pos_inside(pos a) {
-	
 		return (a.a > 0) && (a.b > 0) && (a.a < 10) && (a.b < 10) &&
 			(std::abs((long)(a.a-a.b)) < 5);
 	}
@@ -235,14 +236,14 @@ bool is_over_bord(move Move) {
 	//
 	if(is_pos_inside(tmp)){
 		pos tmp2 = Move.b;
-		cout << "1 is inside"<<endl;
+      //cout << "1 is inside"<<endl;
 
 		if(is_valid_pos(tmp2)) {
 			tmp2 = add_pos(tmp2,dir);
 
 			if(is_pos_inside(tmp2)) {
 				pos tmp3 = Move.c;
-				cout << "2 is inside"<<endl;
+				//cout << "2 is inside"<<endl;
 
 				if(is_valid_pos(tmp3)) {
 					tmp3 = add_pos(tmp3,dir);
