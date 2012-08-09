@@ -34,6 +34,12 @@ listmove convert2list(move m) {
   return Listmove;
 }
 
+listmove sortlist(listmove m) {
+  for (int i=0;i++;i<m.list.size()){
+  //  if( asd )
+  }
+}
+
 move convert2unsorted(listmove m) {
   move M;
   if (m.list.size()>2) {M.c=m.list[2];}
