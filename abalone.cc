@@ -62,6 +62,24 @@ public:
 	}
 };
 
+class nick_ai_player {
+	std::string player_name;
+	// this function has to ensure that in "move", nothing like
+	// {a = valid_move, b = invalid_move, c = valid_move} happens
+public:
+	nick_ai_player(std::string name) : player_name(name) { }
+	move operator()(field& f) {
+		
+		move Test;
+		while(is_equal(Test.a,not_a_position)){	
+			Test = ki_do_move(f);
+		}
+		//print_move(Test);
+		
+		return Test;
+	}
+};
+
 
 
 int main() {
@@ -76,14 +94,20 @@ int main() {
 	do_move(f,Test);
 	//print_move(Test);
 	print_field(f);*/
+	InitRandom();
 	
-	human_player player_one = human_player("Black");
-	human_player player_two = human_player("White");
+	//human_player player_one = human_player("Black");
+	nick_ai_player player_one = nick_ai_player("BLACK");
+	nick_ai_player player_two = nick_ai_player("White");
 
+	int tmp;
 	for(;;) {
 		print_field(f);
-		do_move(f, player_one(f));
-		print_field(f);
+		ki_color = BLACK;
 		do_move(f, player_two(f));
+		print_field(f);
+		ki_color = WHITE;
+		do_move(f, player_one(f));
+		std::cin>>tmp;
 	}
 }
