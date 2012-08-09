@@ -48,33 +48,16 @@ void print_position(pos p) {
 
 
 int main() {
-	/*field f = start_field();
-	for(;;) {
-		for(int i = 0; i < 2; ++i) {
-			print_field(f);
-			cout << (i ? "White" : "Black");
-			cout << ": Please specify your move ('n' for no move)!" << endl;
-			move m = read_move();
-			do_move(f, m);
-		}
-	}*/
-	field Feld;
-	//cout << unitvec[0].a<<endl;
-	Feld.set_stone(5,5,WHITE);
- 	Feld.set_stone(5,4,BLACK);
- 	Feld.set_stone(5,3,BLACK);
-
-	Feld.set_stone(4,7,EMPTY);
-	Feld.set_stone(4,6,BLACK);
-	Feld.set_stone(4,5,WHITE);
-	
-	Feld.set_stone(4,4,BLACK);
-	Feld.set_stone(4,3,BLACK);
-	Feld.set_stone(4,2,BLACK);
-	
-	pos c = {4,4};
-	pos b = {4,3};	
-	pos a = {4,2};
-
- 	cout << move_valid(a,b,c,unitvec[1],Feld)<<endl;
+	// field f = start_field();
+	// for(;;) {
+	// 	for(int i = 0; i < 2; ++i) {
+	// 		print_field(f);
+	// 		cout << (i ? "White" : "Black");
+	// 		cout << ": Please specify your move ('n' for no move)!" << endl;
+	// 		move m = read_move();
+	// 		do_move(f, m);
+	// 	}
+	// }
+	field f = start_field();
+	possible_moves(f, BLACK);
 }

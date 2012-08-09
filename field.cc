@@ -38,6 +38,17 @@ field coordinate_field() {
 	return f;
 }
 
+field test_field() {
+	field f;
+	//f.set_stone(2,2,WHITE);
+	f.set_stone(1,1,BLACK);
+	f.set_stone(2,1,BLACK);
+	f.set_stone(3,1,BLACK);
+	f.set_stone(4,1,WHITE);
+	f.set_stone(5,1,BLACK);
+	return f;
+}
+
 field copy_field(field f) {
 	field new_field;
 	for(int i = 0; i < N+2; ++i) {
