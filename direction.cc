@@ -30,7 +30,7 @@ pos inv_dir(pos a){
 }
 
 bool move_valid(move Move, field &f) {
-  if (!is_equal(Move.a,not_a_position) )  return move_valid(Move.a,Move.b,Move.c,
+  if (!is_equal(Move.c,not_a_position) )  return move_valid(Move.a,Move.b,Move.c,
     unitvec[Move.dir], f);
   if (!is_equal(Move.b,not_a_position))  return move_valid(Move.a,Move.b,
     unitvec[Move.dir], f);  
@@ -52,7 +52,7 @@ bool move_valid(pos a, pos b,pos dir,field &f) {
 		
 			if(is_equal(add_pos(b,dir),a)) {
 				//a is in front
-				cout<<"a is in front"<<endl;
+				//cout<<"a is in front"<<endl;
 				pos tmp = add_pos(a,dir);
 				if(f.get_stone(tmp.a,tmp.b)) {
 					//Case: 3 stones of same colour
@@ -75,7 +75,7 @@ bool move_valid(pos a, pos b,pos dir,field &f) {
 				return true;
 			}else{
 				//b is in front
-				cout<<"b is in front"<<endl;
+				//cout<<"b is in front"<<endl;
 				pos tmp = add_pos(b,dir);
 				if(f.get_stone(tmp.a,tmp.b)) {
 					//Case: 3 stones of same colour
@@ -100,7 +100,7 @@ bool move_valid(pos a, pos b,pos dir,field &f) {
 			}
 
 		}else{
-			cout<<"NPARALLEL"<<endl;
+			//cout<<"NPARALLEL"<<endl;
 			pos dist = sub_pos(a,b);
 			if(is_equal(unitvec[0],dist) or is_equal(unitvec[1],dist) or is_equal(unitvec[2],dist) or is_equal(unitvec[3],dist)
 			or is_equal(unitvec[4],dist) or is_equal(unitvec[5],dist)) {
@@ -130,7 +130,7 @@ bool move_valid(pos a, pos b, pos c, pos dir, field &f) {
 		  if(is_equal(dist,dir) or is_equal(dist,inv_dir(dir)) ) { 
         // c is in front
         if ( is_equal(sub_pos(c,dir),a) or is_equal(sub_pos(c,dir),b) ) {
-				cout<<"c is in front"<<endl;
+				//cout<<"c is in front"<<endl;
 				pos tmp = add_pos(c,dir);
         return check(a,b,tmp,dir,f);
 			  }
@@ -144,7 +144,7 @@ bool move_valid(pos a, pos b, pos c, pos dir, field &f) {
       }
       else {
       // NonParallel
-   			cout<<"NPARALLEL"<<endl;
+   			//cout<<"NPARALLEL"<<endl;
 				pos tmp = add_pos(a,dir);
 				pos tmp2 = add_pos(b,dir);
 				pos tmp3 = add_pos(c,dir);

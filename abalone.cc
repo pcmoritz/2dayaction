@@ -3,8 +3,17 @@
 #include <sstream>
 #include <cstdio>
 #include "alpha-beta-ki.hh"
+#include <time.h>
 
 using namespace std;
+
+void print_move(move Move){
+	print_position(Move.a);
+	print_position(Move.b);
+	print_position(Move.c);
+	//print_position(unitvec[Move.dir]);
+	std::cout << Move.dir<<std::endl;
+}
 
 int string_to_number(std::string str) {
 	int num;
@@ -90,18 +99,39 @@ bool check_victory(field &f){
 }
 
 int main() {
+	std::srand(time(NULL));
 	field f = start_field();
 	
 	alpha_beta_player player_one = alpha_beta_player("Black", BLACK);
 	alpha_beta_player player_two = alpha_beta_player("White", WHITE);
-
+	move player_move;
 	for(;;) {
-		print_field(f);
-		do_move(f, player_one(f));
+		//print_field(f);
+		player_move = player_one(f);
+		//print_field(f);
+		//print_move(player_move);
+		//do_move(f,player_move);
+		if(move_valid(player_move,f)){
+			do_move(f,player_move);	
+		}else{
+			std::cout<<"Black cheated"<<std::endl;
+			print_field(f);
+			print_move(player_move);
+			std::getchar();
+		}
 		if(check_victory(f)) break;
+		//print_field(f);
 		//std::getchar();
 		//print_field(f);
-		do_move(f, player_two(f));
+		player_move = player_two(f);
+		if(move_valid(player_move,f)){
+			do_move(f,player_move);
+		}else{
+			std::cout<<"White cheated"<<std::endl;
+			print_field(f);
+			print_move(player_move);
+			std::getchar();	
+		}
 		if(check_victory(f)) break;
 		//std::getchar();
 	}
