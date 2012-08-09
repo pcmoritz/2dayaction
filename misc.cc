@@ -69,6 +69,14 @@ int count_stones(int color,field &f) {
 	}
 	return tmp;
 }
+void remove_edge_stones(){
+	for(int i=0;i<11;i++) {
+		for(int j=0;j<11;j++) {
+			if(!f.is_pos_inside(i, j)) {
+				f.set_stone(i,j,EMPTY);	
+		}
+	}
+}
 
 bool check_victory(field &f){
 	if(count_stones(WHITE,f)<7){
