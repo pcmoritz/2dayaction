@@ -1,6 +1,7 @@
 #include <iostream>
 #include "field.hh"
 #include <sstream>
+#include "random_ki.hh"
 
 using namespace std;
 
@@ -46,7 +47,6 @@ void print_position(pos p) {
 }
 
 
-
 int main() {
 	// field f = start_field();
 	// for(;;) {
@@ -62,17 +62,27 @@ int main() {
 	field f = start_field();
 	//possible_moves(f, BLACK);
 	print_field(f);
+	InitRandom();
+	move Test;
+	while(is_equal(Test.a,not_a_position)){	
+		Test = ki_do_move(f);
+	}
+	do_move(f,Test);
+	//print_move(Test);
+	print_field(f);
+	
 
 	//is_over_bord test	
 	/*pos a,b,c;
-	a.a = 1;
-	a.b = 4;
+	a.a = 7;
+	a.b = 5;
+	cout<< move_valid(a,unitvec[4],f)<<endl;
 	b.a = 1;
 	b.b = 5;
 	move Test;
 	Test.a =a;
 	Test.b = b;
 	//Test.c = not_a_position;
-	Test.dir = 4;
-	cout << is_over_bord(Test)<<endl;*/	
+	Test.dir = 4;*/
+	//cout << is_over_bord(Test)<<endl;	
 }

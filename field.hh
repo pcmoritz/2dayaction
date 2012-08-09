@@ -22,7 +22,7 @@ struct move {
 	pos a, b, c;
 	int dir;
 	move(){
-	a,b,c = not_a_position;
+	a=b=c = not_a_position;
 	}
 };
 
