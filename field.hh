@@ -81,9 +81,12 @@ std::string number_to_string(int num);
 bool move_valid(pos a, pos dir,field &f);
 bool move_valid(pos a,pos b, pos dir,field &f);
 bool move_valid(pos a,pos b, pos c, pos dir,field &f);
+bool move_valid(move Move,field &f);
 
 bool is_over_bord(move Move);
 
 void possible_moves(field& f, stone player, std::list<move>* list);
+
+double UH1_field(field& f, int player);
 
 #endif

@@ -29,6 +29,15 @@ pos inv_dir(pos a){
 	return c;
 }
 
+bool move_valid(move Move, field &f) {
+  if (!is_equal(Move.a,not_a_position) )  return move_valid(Move.a,Move.b,Move.c,
+    unitvec[Move.dir], f);
+  if (!is_equal(Move.b,not_a_position))  return move_valid(Move.a,Move.b,
+    unitvec[Move.dir], f);  
+  return move_valid(Move.a, unitvec[Move.dir], f);
+}
+
+
 bool move_valid(pos a, pos dir,field &f) {
 	if(f.get_stone(add_pos(a,dir).a,add_pos(a,dir).b)) return false;
 	else return true;
