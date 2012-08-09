@@ -77,4 +77,6 @@ bool move_valid(pos a, pos dir,field &f);
 bool move_valid(pos a,pos b, pos dir,field &f);
 bool move_valid(pos a,pos b, pos c, pos dir,field &f);
 
+std::list<move> possible_moves(field& f, stone player);
+
 #endif
