@@ -92,13 +92,10 @@ int count_stones(int color,field &f) {
 bool check_victory(field &f){
 	if(count_stones(WHITE,f)<7){
 		std::cout<<"BLACK won!"<<std::endl;
-		print_field(f);
 		return true;
 	}
 	if(count_stones(BLACK,f)<7){
 		std::cout<<"White won!"<<std::endl;	
-		print_field(f);
-		return true;
 	}
 }
 
@@ -113,32 +110,30 @@ int main() {
 	for(;;) {
 		//print_field(f);
 		player_move = player_one(f);
-		do_move(f,player_move);	
 		//print_field(f);
 		//print_move(player_move);
 		//do_move(f,player_move);
-		/*if(move_valid(player_move,f)){
+		if(move_valid(player_move,f)){
 			do_move(f,player_move);	
 		}else{
 			std::cout<<"Black cheated"<<std::endl;
 			print_field(f);
 			print_move(player_move);
 			std::getchar();
-		}*/
+		}
 		if(check_victory(f)) break;
 		//print_field(f);
 		//std::getchar();
 		//print_field(f);
 		player_move = player_two(f);
-		do_move(f,player_move);	
-		/*if(move_valid(player_move,f)){
+		if(move_valid(player_move,f)){
 			do_move(f,player_move);
 		}else{
 			std::cout<<"White cheated"<<std::endl;
 			print_field(f);
 			print_move(player_move);
 			std::getchar();	
-		}*/
+		}
 		if(check_victory(f)) break;
 		//std::getchar();
 	}

@@ -65,12 +65,7 @@ field coordinate_field();
 void print_field(field f);
 
 extern const pos unitvec[6];
-pos add_pos(pos a, pos b);
-bool is_valid_pos(pos p);
-bool is_equal(pos a, pos b);
 
-pos sub_pos(pos a, pos b);
-pos inv_dir(pos a);
 
 void print_position(pos p);
 field test_field();
@@ -78,15 +73,32 @@ field test_field();
 void do_move(field& f, move m);
 std::string number_to_string(int num);
 
+void possible_moves(field& f, stone player, std::list<move>* list);
+bool is_valid_pos(pos p);
+
+double UH1_field(field& f, int player);
+
+// ---------- Direction -----------------
+
+bool is_equal(pos a, pos b);
+pos add_pos(pos a, pos b);
+pos sub_pos(pos a, pos b);
+pos inv_dir(pos a);
 bool move_valid(pos a, pos dir,field &f);
 bool move_valid(pos a,pos b, pos dir,field &f);
 bool move_valid(pos a,pos b, pos c, pos dir,field &f);
 bool move_valid(move Move,field &f);
-
 bool is_over_bord(move Move);
 
-void possible_moves(field& f, stone player, std::list<move>* list);
 
-double UH1_field(field& f, int player);
+// ---------- Misc -----------------------
+
+void print_move(move Move);
+int string_to_number(std::string str);
+pos read_position();
+move read_move();
+void print_position(pos p);
+int count_stones(int color,field &f);
+bool check_victory(field &f);
 
 #endif
