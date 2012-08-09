@@ -34,11 +34,52 @@ listmove convert2list(move m) {
   return Listmove;
 }
 
-listmove sortlist(listmove m) {
+listmove copylist(listmove m) {
+  listmove tmp;
   for (int i=0;i++;i<m.list.size()){
-  //  if( asd )
+    tmp.list.push_back(m.list[i]);
   }
+  tmp.dir=m.dir;
+  return tmp;
 }
+
+listmove sortlist(listmove m) {
+  int N = m.list.size();
+  pos Dir = unitvec[m.dir];
+  if (N=3){
+    if( is_equal(add_pos(m.list[0],Dir),m.list[1]) or  
+        is_equal(add_pos(m.list[0],Dir),m.list[2])  ){
+      // 0 ist nicht vorne
+      if( is_equal(add_pos(m.list[1],Dir),m.list[2]) ){
+        // 2 ist vorne
+        listmove tmp = copylist(m);
+        m[0]=tmp[2];
+        m[1]=tmp[1];
+        m[2]=tmp[0];
+      }
+      else {
+        // 1 ist vorne
+        listmove tmp = copylist(m);
+        m[0]=tmp[2];
+        m[1]=tmp[1];
+        m[2]=tmp[0];
+      }
+    }   
+  }
+
+/*  for (int i=0;i++;i<m.list.size()){
+    for (int j=0;j++;j<m.list.size()){ 
+      if(j!=i) {
+        if( is_equal(add_pos(m.list[i],dir),m.list[j])  ){   
+          // Another member of the list is more in front
+          
+        }
+      }
+    }
+  }*/
+}
+
+
 
 move convert2unsorted(listmove m) {
   move M;
