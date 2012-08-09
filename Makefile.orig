@@ -1,0 +1,14 @@
+abalone:
+	g++ abalone.cc print_field.cc field.cc move.cc direction.cc possible_moves.cc -o a.out
+random_nick:
+	g++ random_ki.cc print_field.cc field.cc move.cc direction.cc -o a.out
+bijan:
+	g++ direction2.cc print_field.cc field.cc move.cc direction.cc -o a.out
+nick:
+<<<<<<< HEAD
+	g++ abalone.cc print_field.cc field.cc move.cc direction.cc possible_moves.cc random_ki.hh -o a.out
+=======
+	g++ abalone.cc print_field.cc field.cc move.cc direction.cc -o a.out
+pcmoritz:
+	g++ pcmoritz_main.cc print_field.cc field.cc move.cc direction.cc possible_moves.cc -o a.out
+>>>>>>> bbc557aaff5ba4de37b4cc05286d7497e4c6300e
