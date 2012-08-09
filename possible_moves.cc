@@ -2,16 +2,26 @@
 #include <list>
 #include <iostream>
 
+// #define DEBUG
+
 pos add_pos_dir(int a, int b, int dir) {
 	pos p = {a, b};
 	return add_pos(p, unitvec[dir]);
 }
 
-void add_move_one(std::list<move>& list, pos p, pos dir) {
+void add_move_one(std::list<move>& list, pos p, int dir) {
+	#ifdef DEBUG
 	std::cout << "Possible move:";
 	print_position(p);
 	std::cout << " ";
-	print_position(dir);
+	std::cout << dir;
+	std::cout << std::endl;
+	#endif
+
+	move m;
+	m.a = p;
+	m.dir = dir;
+	list.push_back(m);
 }
 
 // position not occupied and inside bounds
@@ -30,7 +40,7 @@ void search_one(field& f, stone player, std::list<move>& list) {
 					pos p = {i, j};
 					pos q = add_pos(p, unitvec[dir]);
 					if(position_free(f, q)) {
-						add_move_one(list, p, unitvec[dir]);
+						add_move_one(list, p, dir);
 					}
 				}
 			}
@@ -39,6 +49,7 @@ void search_one(field& f, stone player, std::list<move>& list) {
 }
 
 void add_move_two(std::list<move>& list, pos p, pos q, int dir) {
+	#ifdef DEBUG
 	std::cout << "Possible move:";
 	print_position(p);
 	std::cout << " ";
@@ -46,6 +57,13 @@ void add_move_two(std::list<move>& list, pos p, pos q, int dir) {
 	std::cout << " ";
 	std::cout << dir;
 	std::cout << std::endl;
+	#endif
+
+	move m;
+	m.a = p;
+	m.b = q;
+	m.dir = dir;
+	list.push_back(m);
 }
 
 bool different_players(int a, int b) {
@@ -108,6 +126,7 @@ void search_two(field& f, stone player, std::list<move>& list) {
 
 
 void add_move_three(std::list<move>& list, pos p, pos q, pos r, int dir) {
+	#ifdef DEBUG
 	std::cout << "Possible move:";
 	print_position(p);
 	std::cout << " ";
@@ -117,6 +136,14 @@ void add_move_three(std::list<move>& list, pos p, pos q, pos r, int dir) {
 	std::cout << " ";
 	std::cout << dir;
 	std::cout << std::endl;
+	#endif
+
+	move m;
+	m.a = p;
+	m.b = q;
+	m.c = r;
+	m.dir = dir;
+	list.push_back(m);
 }
 
 void search_three(field& f, stone player, std::list<move>& list) {
@@ -194,14 +221,10 @@ void search_three(field& f, stone player, std::list<move>& list) {
 	}
 }
 
-
-std::list<move> possible_moves(field& f, stone player) {
-	std::list<move> list;
-
-	search_one(f, player, list);
-	std::cout << std::endl;
-	search_two(f, player, list);
-	search_three(f, player, list);
-	
-	return list;
+// The main function. The argument list is a pointer to the list into
+// which the possible moves will be written
+void possible_moves(field& f, stone player, std::list<move>* list) {
+	search_one(f, player, *list);
+	search_two(f, player, *list);
+	search_three(f, player, *list);
 }

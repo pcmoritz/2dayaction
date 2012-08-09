@@ -22,7 +22,9 @@ struct move {
 	pos a, b, c;
 	int dir;
 	move(){
-	a=b=c = not_a_position;
+		a = not_a_position;
+		b = not_a_position;
+		c = not_a_position;
 	}
 };
 
@@ -82,6 +84,6 @@ bool move_valid(pos a,pos b, pos c, pos dir,field &f);
 
 bool is_over_bord(move Move);
 
-std::list<move> possible_moves(field& f, stone player);
+void possible_moves(field& f, stone player, std::list<move>* list);
 
 #endif
