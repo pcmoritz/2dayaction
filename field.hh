@@ -99,6 +99,6 @@ pos read_position();
 move read_move();
 void print_position(pos p);
 int count_stones(int color,field &f);
-bool check_victory(field &f);
+stone check_victory(field &f);
 
 #endif
