@@ -1,3 +1,6 @@
+#ifndef ULI_KI_HH
+#define ULI_KI_HH
+
 #include <cmath>
 #include <vector>
 #include "field.hh"
@@ -59,7 +62,7 @@ return Bewertung;
 }
 
 double Uli03_rate_move(field& f, int player) {
-	double Bewertung=0; double Wert=0;
+	double Bewertung=0;
   	for(int i = 0; i <= N+1; ++i) {
 		for(int j = 0; j <= N+1; ++j){
 			int r;
@@ -75,13 +78,14 @@ return Bewertung;
 }
 
 double Uli04_rate_move(field& f, int player) {
-	double Bewertung=0; double Wert=0;
+	double Bewertung=0;
 	pos pos1,pos2,pos3,pos4,pos5;
 	for(int dir = 0; dir <= 5; ++dir) { 
 		for(int i = 1; i <= N; ++i) {
 			for(int j = 1; j <= N; ++j){
 				if (not((i > 1) && (j > 1) && (i < 9) && (j < 9) && (std::abs((long)(i-j))) < 4)){
-				pos1.a = i;pos1.b = j;
+				pos1.a = i;
+				pos1.b = j;
 				pos2.a = i+unitvec[dir].a;
 				pos2.b = j+unitvec[dir].b;
 				pos3.a = i+unitvec[dir].a+unitvec[dir].a;
@@ -156,8 +160,7 @@ public:
 		int aktuellbesterZug = 0;
 		double Bewertung = 0;
 		double temp = -100000;
-		double Uli01,Uli02,Uli03,Uli04,Uli05,Uli06;
-		for (int n=0;n<list.size();n++) {
+		for (size_t n=0;n<list.size();n++) {
 		  field f_hyp=copy_field(f);
 		  do_move(f_hyp, v[n]);
 		  
@@ -172,3 +175,5 @@ public:
 // 		return v[0]; // assumes that there was at least one valid move
 	}
 };
+
+#endif

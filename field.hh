@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <vector>
 
 const int N = 9; // size of the field
 const int K = std::ceil(N/2.0);
@@ -42,6 +43,9 @@ public:
 		}
 	}
 	stone get_stone(int a, int b) {
+		if((a < 0) || (a >= N+2) || (b < 0) || (b >= N+2))
+			return EMPTY;
+			
 		return stones[a][b];
 	}
 	stone get_stone(pos p) {
@@ -74,6 +78,7 @@ void do_move(field& f, move m);
 std::string number_to_string(int num);
 
 void possible_moves(field& f, stone player, std::list<move>* list);
+void vector_possible_moves(field& f, stone player, std::vector<move>* vec);
 bool is_valid_pos(pos p);
 
 double UH1_field(field& f, int player);

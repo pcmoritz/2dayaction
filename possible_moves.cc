@@ -1,5 +1,6 @@
 #include "field.hh"
 #include <list>
+#include <vector>
 #include <iostream>
 
 // #define DEBUG
@@ -9,7 +10,7 @@ pos add_pos_dir(int a, int b, int dir) {
 	return add_pos(p, unitvec[dir]);
 }
 
-void add_move_one(std::list<move>& list, pos p, int dir) {
+void add_move_one(std::vector<move>& vec, pos p, int dir) {
 	#ifdef DEBUG
 	std::cout << "Possible move:";
 	print_position(p);
@@ -21,7 +22,7 @@ void add_move_one(std::list<move>& list, pos p, int dir) {
 	move m;
 	m.a = p;
 	m.dir = dir;
-	list.push_back(m);
+	vec.push_back(m);
 }
 
 // position not occupied and inside bounds
@@ -31,7 +32,7 @@ bool position_free(field& f, pos other) {
 }
 
 // add all possible moves with one stone
-void search_one(field& f, stone player, std::list<move>& list) {
+void search_one(field& f, stone player, std::vector<move>& vec) {
 	for(int i = 1; i <= N; ++i) {
 		for(int j = 1; j <= N; ++j) {
 			if(f.get_stone(i, j) == player) {
@@ -40,7 +41,7 @@ void search_one(field& f, stone player, std::list<move>& list) {
 					pos p = {i, j};
 					pos q = add_pos(p, unitvec[dir]);
 					if(position_free(f, q)) {
-						add_move_one(list, p, dir);
+						add_move_one(vec, p, dir);
 					}
 				}
 			}
@@ -48,7 +49,7 @@ void search_one(field& f, stone player, std::list<move>& list) {
 	}
 }
 
-void add_move_two(std::list<move>& list, pos p, pos q, int dir) {
+void add_move_two(std::vector<move>& vec, pos p, pos q, int dir) {
 	#ifdef DEBUG
 	std::cout << "Possible move:";
 	print_position(p);
@@ -63,14 +64,14 @@ void add_move_two(std::list<move>& list, pos p, pos q, int dir) {
 	m.a = p;
 	m.b = q;
 	m.dir = dir;
-	list.push_back(m);
+	vec.push_back(m);
 }
 
 bool different_players(int a, int b) {
 	return (b != a) && (b != 0);
 }
 
-void search_two(field& f, stone player, std::list<move>& list) {
+void search_two(field& f, stone player, std::vector<move>& vec) {
 	for(int i = 1; i <= N; ++i) {
 		for(int j = 1; j <= N; ++j) {
 			if(f.get_stone(i, j) == player) {
@@ -83,7 +84,7 @@ void search_two(field& f, stone player, std::list<move>& list) {
 							// same direction
 							if(dir == delta) {
 								if(position_free(f, add_pos_dir(other.a, other.b, dir)))
-									add_move_two(list, p, other, dir);
+									add_move_two(vec, p, other, dir);
 
 								// Wegschiebfall p other p1 p2
 								pos p1 = add_pos_dir(other.a, other.b, dir);
@@ -91,13 +92,13 @@ void search_two(field& f, stone player, std::list<move>& list) {
 								if(different_players(player, f.get_stone(p1)) &&
 									 f.get_stone(p2) == 0) {
 									// adden
-									add_move_two(list, p, other, dir);
+									add_move_two(vec, p, other, dir);
 								}
 							}
 							// opposite direction
 							else if((delta + 3 - dir + 6) % 6 == 0) {
 								if(position_free(f, add_pos_dir(p.a, p.b, dir)))
-									add_move_two(list, p, other, dir);
+									add_move_two(vec, p, other, dir);
 
 								// Wegschiebfall p2 p1 p other
 								pos p1 = add_pos_dir(p.a, p.b, dir);
@@ -105,7 +106,7 @@ void search_two(field& f, stone player, std::list<move>& list) {
 								if(different_players(player, f.get_stone(p1)) &&
 									 f.get_stone(p2) == 0) {
 										 // adden
-										 add_move_two(list, p, other, dir);
+										 add_move_two(vec, p, other, dir);
 									 }
 							}
 
@@ -114,7 +115,7 @@ void search_two(field& f, stone player, std::list<move>& list) {
 								pos a = add_pos_dir(i, j, dir);
 								pos b = add_pos_dir(a.a, a.b, delta);
 								if(position_free(f, a) && position_free(f, b))
-									add_move_two(list, p, other, dir);
+									add_move_two(vec, p, other, dir);
 							}
 						}
 					}
@@ -125,7 +126,7 @@ void search_two(field& f, stone player, std::list<move>& list) {
 }
 
 
-void add_move_three(std::list<move>& list, pos p, pos q, pos r, int dir) {
+void add_move_three(std::vector<move>& vec, pos p, pos q, pos r, int dir) {
 	#ifdef DEBUG
 	std::cout << "Possible move:";
 	print_position(p);
@@ -143,10 +144,10 @@ void add_move_three(std::list<move>& list, pos p, pos q, pos r, int dir) {
 	m.b = q;
 	m.c = r;
 	m.dir = dir;
-	list.push_back(m);
+	vec.push_back(m);
 }
 
-void search_three(field& f, stone player, std::list<move>& list) {
+void search_three(field& f, stone player, std::vector<move>& vec) {
 	for(int i = 1; i <= N; ++i) {
 		for(int j = 1; j <= N; ++j) {
 			if(f.get_stone(i, j) == player) {
@@ -163,18 +164,18 @@ void search_three(field& f, stone player, std::list<move>& list) {
 								if(dir == delta) {
 									pos d = add_pos_dir(c.a, c.b, dir);
 									if(position_free(f, d))
-										add_move_three(list, a, b, c, dir);
+										add_move_three(vec, a, b, c, dir);
 									if(different_players(player, f.get_stone(d))) {
 										// Wegschiebfall, ein Stein
 										if(f.get_stone(add_pos_dir(d.a, d.b, dir)) == 0) {
-											add_move_three(list, a, b, c, dir);
+											add_move_three(vec, a, b, c, dir);
 										}
 										else {
 											// Wegschiebefall, zwei Steine
 											pos e = add_pos_dir(d.a, d.b, dir);
 											if(different_players(player, f.get_stone(e))) {
 												if(f.get_stone(add_pos_dir(e.a, e.b, dir)) == 0) {
-													add_move_three(list, a, b, c, dir);
+													add_move_three(vec, a, b, c, dir);
 												}
 											}
 										}
@@ -184,18 +185,18 @@ void search_three(field& f, stone player, std::list<move>& list) {
 								else if((delta + 3 - dir + 6) % 6 == 0) {
 									pos d = add_pos_dir(a.a, a.b, dir);
 									if(position_free(f, d))
-										add_move_three(list, a, b, c, dir);
+										add_move_three(vec, a, b, c, dir);
 									if(different_players(player, f.get_stone(d))) {
 										// Wegschiebfall, ein Stein
 										if(f.get_stone(add_pos_dir(d.a, d.b, dir)) == 0) {
-											add_move_three(list, a, b, c, dir);
+											add_move_three(vec, a, b, c, dir);
 										}
 										else {
 											// Wegschiebefall, zwei Steine
 											pos e = add_pos_dir(d.a, d.b, dir);
 											if(different_players(player, f.get_stone(e))) {
 												if(f.get_stone(add_pos_dir(e.a, e.b, dir)) == 0) {
-													add_move_three(list, a, b, c, dir);
+													add_move_three(vec, a, b, c, dir);
 												}
 											}
 										}
@@ -208,7 +209,7 @@ void search_three(field& f, stone player, std::list<move>& list) {
 									pos z = add_pos_dir(c.a, c.b, dir);
 									if(position_free(f, x) && position_free(f, y) &&
 										 position_free(f, z)) {
-										add_move_three(list, a, b, c, dir);
+										add_move_three(vec, a, b, c, dir);
 										// YAY
 									}
 								}
@@ -221,10 +222,18 @@ void search_three(field& f, stone player, std::list<move>& list) {
 	}
 }
 
+void vector_possible_moves(field& f, stone player, std::vector<move>* vec) {
+	search_one(f, player, *vec);
+	search_two(f, player, *vec);
+	search_three(f, player, *vec);
+}
+
 // The main function. The argument list is a pointer to the list into
 // which the possible moves will be written
 void possible_moves(field& f, stone player, std::list<move>* list) {
-	search_one(f, player, *list);
-	search_two(f, player, *list);
-	search_three(f, player, *list);
+	std::vector<move> vec;
+	vector_possible_moves(f, player, &vec);
+	for(size_t i = 0; i < vec.size(); ++i) {
+		list->push_back(vec[i]);
+	}
 }

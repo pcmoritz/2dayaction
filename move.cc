@@ -34,21 +34,12 @@ listmove convert2list(move m) {
   return Listmove;
 }
 
-listmove sortlist(listmove m) {
-  for (int i=0;i++;i<m.list.size()){
-  //  if( asd )
-  }
-}
-
 move convert2unsorted(listmove m) {
   move M;
   if (m.list.size()>2) {M.c=m.list[2];}
   if (m.list.size()>1) {M.b=m.list[1];}
   if (m.list.size()>0) {M.a=m.list[0];}
   return M;
-}
-
-bool in_front(int nr, listmove m){
 }
 
 void do_move(field& f, move m) {
@@ -100,16 +91,3 @@ void do_move(field& f, move m) {
 	if(is_valid_pos(c))
 		f.set_stone(next_c.a, next_c.b, player);
 }
-
-/* main() {
-	move m;
-	m.a.a = 5;
-	m.a.b = 3;
-	m.b.a = 6;
-	m.b.b = 4;
-	m.c.a = 7;
-	m.c.b = 5;
-	m.dir = 2;
-  listmove M=convert2list(m);
-  print_move(convert2unsorted(M));
-}*/

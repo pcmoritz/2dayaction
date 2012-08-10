@@ -18,8 +18,10 @@ class human_player {
 	// this function has to ensure that in "move", nothing like
 	// {a = valid_move, b = invalid_move, c = valid_move} happens
 public:
-	human_player(std::string name) : player_name(name), player(WHITE) { }
+	human_player(std::string name, stone p) : player_name(name), player(p) { }
 	move operator()(field& f) {
+		std::cout << "temp field:" << std::endl;
+		print_field(f);
 		std::cout << player_name +
 			std::string(": Please specify your move ('n' for no move)!");
 		return read_move();
@@ -37,6 +39,7 @@ game_stats play_game(field Field,player_one p1,player_two p2) {
 	while(!check_victory(Field)) {
 		player_move =p1(Field);
 		do_move(Field,player_move);
+		print_field(Field);
 		moves+=1;
 		if(check_victory(Field)) {
 			game_stats ret;
@@ -44,8 +47,9 @@ game_stats play_game(field Field,player_one p1,player_two p2) {
 			ret.winning_color = check_victory(Field);		
 		return ret;
 		}
-		player_move =p2(Field);
+		player_move = p2(Field);
 		do_move(Field,player_move);
+		print_field(Field);
 	}
 	game_stats ret;
 	ret.moves = moves;
@@ -66,14 +70,10 @@ int main() {
 	std::srand(time(NULL));
 	field f = start_field();
 	
-<<<<<<< HEAD
-	nick_player player_one("Black", BLACK,1,2,1);   // rot
-	Uli_player player_two("White", WHITE);		// grün
-=======
-	nick_player player_one("Black", BLACK,1,2,1);
+	Uli_player player_one("Black", BLACK);
 	alpha_beta_player_extended player_two("White", WHITE);
 	func(f,player_one,player_two);
->>>>>>> b0f1d2aa0d4c10f03300613b8734b8ec53285e86
+
 	
 	/*move player_move;
 	for(;;) {
