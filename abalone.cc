@@ -66,14 +66,13 @@ int main() {
 	std::srand(time(NULL));
 	field f = start_field();
 	
-<<<<<<< HEAD
-	nick_player player_one("Black", BLACK,1,2,1);   // rot
-	Uli_player player_two("White", WHITE);		// grün
-=======
+// 	nick_player player_one("Black", BLACK,1,2,1);   // rot
+// 	Uli_player player_two("White", WHITE);		// grün
+
 	nick_player player_one("Black", BLACK,1,2,1);
 	alpha_beta_player player_two("White", WHITE);
 	func(f,player_one,player_two);
->>>>>>> b0f1d2aa0d4c10f03300613b8734b8ec53285e86
+
 	
 	/*move player_move;
 	for(;;) {
