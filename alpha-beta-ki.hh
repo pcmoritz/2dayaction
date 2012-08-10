@@ -4,6 +4,9 @@
 #include <limits>
 #include "Uli_ki.hh"
 
+int stonesa;
+int stonesb;
+
 class random_player {
 	std::string player_name;
 	stone player;
@@ -40,12 +43,14 @@ class alpha_beta_player {
 public:
 	alpha_beta_player(std::string name, stone p)
 		: player_name(name), player(p) { }
-	move operator()(field& f) {
+	move operator()(field& f) {	
 		std::list<move> list;
 		possible_moves(f, player, &list);
 
 		double best_score = -std::numeric_limits<double>::max();
 		move best_move;
+		stonesa = count_stones(other_player(player),f);
+		stonesb = count_stones(player,f);
 		
 		for (std::list<move>::const_iterator iterator = list.begin(),
 				 end = list.end(); iterator != end; ++iterator) {
@@ -68,7 +73,6 @@ public:
 double estimator(field& f, stone player) {
 	return Uli01_rate_move(f, player) + 4 * Uli02_rate_move(f, player)
 		+ Uli03_rate_move(f, player) + Uli04_rate_move(f, player);
-}
 
 // factor is 1 if we are maximizing and -1 if we are minimizing
 // and we are "level" levels down the tree
@@ -88,7 +92,7 @@ double minmax(field f, stone player, int factor, int level) {
 		// fix this and do not copy the field...
 		field copy = copy_field(f);
 
-    do_move(copy, *iterator);
+    		do_move(copy, *iterator);
 		double s = factor*minmax(copy, other_player(player), -factor, level+1);
 		
 		if(s > best_score)

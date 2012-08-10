@@ -70,23 +70,8 @@ int main() {
 	std::srand(time(NULL));
 	field f = start_field();
 	
-	Uli_player player_one("Black", BLACK);
-	alpha_beta_player_extended player_two("White", WHITE);
-	func(f,player_one,player_two);
+	Uli_player player_one("Black", BLACK,1,2,1);
+	alpha_beta_player player_two("White", WHITE);
 
-	
-	/*move player_move;
-	for(;;) {
-		player_move = player_one(f);
-		do_move(f,player_move);
-		print_field(f);
-		std::getchar();
-		if(check_victory(f)) break;
-	
-		player_move = player_two(f);
-		do_move(f,player_move);
-		print_field(f);
-		std::getchar();
-		if(check_victory(f)) break;
-	}*/
+	func(f,player_one,player_two);
 }
