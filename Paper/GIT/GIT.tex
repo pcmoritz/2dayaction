@@ -1,1 +1,30 @@
-GIT
+Git (engl. \textit{Blödmann}) dient zur Versionsverwaltung von Dateien.
+Es zeichnet sich aus durch höchste Geschwindigkeit, simples Design( Konsole?!) und
+besonders intuitive und einfache Steuerung, die es uns ermöglicht hat, in kürzester Zeit (circa 12 Stunden) 
+ein nahezu funktionsfähiges Netzwerk aufzusetzen.
+Zu allererst muss ein ''Repository'' auf der Seite \url{https://github.com/} erstelllt werden. 
+Freundlicherweise hat sich Herr Moritz um diese Aufgabe gekümmert.
+Anschließend können Daten geladen (''pull''-Funktion) und hochgeladen (''push''-Funktion).
+Üblicherweise sieht der Uploadvorgang wie folgt aus
+\begin{verbatim}
+	$user git add .
+	$user git commit -m "Kommentar"
+	$user git push
+\end{verbatim}
+
+Aufgrund der Tatsache, dass alle Beteiligten die Files nach belieben ändern konnten, kam es häufig zu 
+folgender Warnung
+\begin{verbatim}
+	$CONFLICT (content): Merge conflict in abalone.cc.orig
+Automatic merge failed; fix conflicts and then commit the result.
+\end{verbatim}
+In diesem Fall muss ''gemerged'' werden.
+\begin{verbatim}
+	$user git mergetool -t meld
+\end{verbatim}
+Oftmals ist das nicht ausreichend und wir empfehlen die Befehle
+\begin{verbatim}
+	git add . ; git commit -m "Kommentar"; git push;
+	git mergetool -t meld; git push
+\end{verbatim}
+in möglichst zufälliger Reihenfolge auszuführen.
