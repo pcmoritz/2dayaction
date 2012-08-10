@@ -3,6 +3,9 @@
 #include <vector>
 #include <limits>
 
+int stonesa;
+int stonesb;
+
 class random_player {
 	std::string player_name;
 	stone player;
@@ -39,12 +42,14 @@ class alpha_beta_player {
 public:
 	alpha_beta_player(std::string name, stone p)
 		: player_name(name), player(p) { }
-	move operator()(field& f) {
+	move operator()(field& f) {	
 		std::list<move> list;
 		possible_moves(f, player, &list);
 
 		double best_score = -std::numeric_limits<double>::max();
 		move best_move;
+		stonesa = count_stones(other_player(player),f);
+		stonesb = count_stones(player,f);
 		
 		for (std::list<move>::const_iterator iterator = list.begin(),
 				 end = list.end(); iterator != end; ++iterator) {
@@ -66,14 +71,20 @@ public:
 
 double UH1(field& f, int player) {
 	double Bewertung=0;
-  	for(int i = 1; i <= N; ++i) {
-		for(int j = 1; j <= N; ++j){
+	if(stonesa> count_stones((int)other_player((stone)player),f)){
+			Bewertung+=100;
+		}
+	if(stonesb < count_stones(player,f)){
+			Bewertung-=1000;
+		}
+  	for(int i = 0; i <= N+1; ++i) {
+		for(int j = 0; j <= N+1; ++j){
 			int r;
 			if (i>=5 && j>=5) {r= std::max(i-5,j-5);}
 			if (i<=5 && j<=5) {r= std::max(abs(i-5),abs(j-5));}
 			if ((i>=5 && j<=5) || (i<=5 && j>=5)) {r = abs(i-j);}
-			if (f.get_stone(i, j)==1) {Bewertung+=-(1+r)*(1+r);}
-			if (f.get_stone(i, j)==2) {Bewertung-=-(1+r)*(1+r);}
+			if (f.get_stone(i, j)==player) {Bewertung+=-pow((1+r),2);}
+			if ((f.get_stone(i, j)!=player) &&(f.get_stone(i, j)!=EMPTY)) {Bewertung-=-pow((1+r),2);}
 		}  
 	}
 return Bewertung;
@@ -97,7 +108,7 @@ double minmax(field f, stone player, int factor, int level) {
 		// fix this and do not copy the field...
 		field copy = copy_field(f);
 
-    do_move(copy, *iterator);
+    		do_move(copy, *iterator);
 		double s = factor*minmax(copy, other_player(player), -factor, level+1);
 		
 		if(s > best_score)

@@ -36,6 +36,7 @@ game_stats play_game(field Field,player_one p1,player_two p2) {
 	while(!check_victory(Field)) {
 		player_move =p1(Field);
 		do_move(Field,player_move);
+		print_field(Field);
 		moves+=1;
 		if(check_victory(Field)) {
 			game_stats ret;
@@ -45,6 +46,7 @@ game_stats play_game(field Field,player_one p1,player_two p2) {
 		}
 		player_move =p2(Field);
 		do_move(Field,player_move);
+		print_field(Field);
 	}
 	game_stats ret;
 	ret.moves = moves;
@@ -63,11 +65,29 @@ void func(field Field,player_one p1,player_two p2) {
 
 int main() {
 	std::srand(time(NULL));
-	field f = start_field();
+	field f;
+	//f.set_stone(5,8,WHITE);
+	f.set_stone(5,7,WHITE);
+	f.set_stone(5,6,WHITE);
+	f.set_stone(5,5,BLACK);
+	f.set_stone(5,4,BLACK);
+	f.set_stone(5,3,BLACK);
+
 	
-	nick_player player_one("Black", BLACK,1,2,1);
+	//f.set_stone(3,6,WHITE);
+	f.set_stone(3,5,WHITE);
+	f.set_stone(3,4,BLACK);
+	f.set_stone(3,3,BLACK);
+
+	f.set_stone(7,8,WHITE);
+	f.set_stone(7,7,BLACK);
+	f.set_stone(7,6,BLACK);
+	f.set_stone(7,5,BLACK);
+	print_field(f);	
+
+	/*nick_player player_one("Black", BLACK,1,2,1);
 	alpha_beta_player player_two("White", WHITE);
-	func(f,player_one,player_two);
+	func(f,player_one,player_two);*/
 	
 	/*move player_move;
 	for(;;) {
