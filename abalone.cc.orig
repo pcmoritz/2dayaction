@@ -2,7 +2,7 @@
 #include "field.hh"
 #include <sstream>
 #include <cstdio>
-#include "alpha-beta-ki.hh"
+#include "alpha-beta-extended.hh"
 #include <time.h>
 #include "nick_ki.hh"
 #include "Uli_ki.hh"
@@ -67,26 +67,34 @@ int main() {
 	field f = start_field();
 	
 <<<<<<< HEAD
+// 	nick_player player_one("Black", BLACK,1,2,1);   // rot
+// 	Uli_player player_two("White", WHITE);		// grün
+=======
+
 	nick_player player_one("Black", BLACK,1,2,1);   // rot
 	Uli_player player_two("White", WHITE);		// grün
-=======
+>>>>>>> 8fe9dc1ef2d538861f7a06bc8326b9d8b4e1aa92
+
 	nick_player player_one("Black", BLACK,1,2,1);
 	alpha_beta_player player_two("White", WHITE);
 	func(f,player_one,player_two);
->>>>>>> b0f1d2aa0d4c10f03300613b8734b8ec53285e86
+<<<<<<< HEAD
+
+=======
+>>>>>>> 8fe9dc1ef2d538861f7a06bc8326b9d8b4e1aa92
 	
 	/*move player_move;
 	for(;;) {
 		player_move = player_one(f);
 		do_move(f,player_move);
-		print_field(f);
-		std::getchar();
+		//print_field(f);
+		//std::getchar();
 		if(check_victory(f)) break;
 	
 		player_move = player_two(f);
 		do_move(f,player_move);
-		print_field(f);
-		std::getchar();
+		//print_field(f);
+		//std::getchar();
 		if(check_victory(f)) break;
 	}*/
 }

@@ -1,0 +1,115 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LaTeX  template by example for your WUPES'12 paper.
+%
+% Please, keep the recommended length of 8 - 12 pages.
+%
+% The final formatting will be handled by us.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,twoside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[numbers]{natbib}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{url}
+\usepackage{paralist}
+%\usepackage[small, compact]{titlesec}
+\usepackage{graphicx}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Korollar}
+
+\usepackage{wrapfig}
+
+\usepackage[small,bf,labelsep=period]{caption}
+\captionsetup{%
+  figurename=Fig.,
+  tablename=Tab.
+}
+
+\usepackage{subfig}
+
+\newcommand{\E}{\operatorname{E}}
+\newcommand{\Var}{\operatorname{Var}}
+
+\newcommand{\R}{\operatorname{roots}}
+\newcommand{\U}{\operatorname{U}}
+\newcommand{\D}{D}
+\newcommand{\pa}{\operatorname{pa}}
+\newcommand{\de}{\operatorname{de}}
+\newcommand{\an}{\operatorname{an}}
+\newcommand{\nd}{\operatorname{nd}}
+\newcommand{\pperp}{\perp\!\!\!\perp}
+\newcommand{\N}{\mathbb{N}}
+%\renewcommand{\R}{\mathbb{R}}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\ri}{\operatorname{de}}
+
+% \title{{\sc On partially observed Bayesian networks that allow the
+% information-theoretic assertion of common causes}}
+\title{{\sc ARES-Abalone}}
+
+\author{
+{
+\small \bf Philipp Moritz}\\
+ \small\texttt{pcmoritz@googlemail.com} 
+  \and
+ {\small \bf Ulrich Müller} \\ 
+ \small \texttt{ulimllr@googlemail.com}
+	\and
+  {\small \bf Jean-Nicolas Lang}\\
+  \small\texttt{jlang@physik.uni-wuerzburg.de}
+  \and
+  {\small \bf Bijan Chokoufe Néjad}\\
+  \small\texttt{bijan.chokoufenejad@physik.uni-wuerzburg.de}
+}
+
+\date{}
+%%%%%% DEFINICE ZAHLAVI
+\newfont{\m}{cmr8}
+\newfont{\ms}{cmsl8}
+\pagestyle{myheadings}
+\markboth{\m P. Moritz, J. Reichardt and N. Ay}
+%{\ms On Bayesian networks that allow the
+% information-theoretic assertion of common causes}
+{\ms A new common cause principle for Bayesian networks}
+%%%%%% KONEC DEFINICE ZAHLAVI
+
+\begin{document}
+
+\renewcommand{\bibsection}{\section*{References}}
+
+\maketitle
+
+\begin{abstract}
+  Abstract
+    
+\bigskip
+
+\noindent {\bf Keywords:} Keywords
+\bigskip
+
+\end{abstract}
+\section{Introduction}
+\input{Introduction/Introduction}
+
+\section{Abalone}
+\input{Abalone/Abalone}
+
+\section{Heuristik}
+\input{Heuristik/Heuristik}
+
+\section{Alpha-Beta-Suche}
+\input{Alpha-Beta-Suche/Alpha-Beta-Suche}
+
+\section{GIT}
+\input{GIT/GIT}
+
+\section{Grillen}
+\input{Grillen/Grillen	}
+
+
+\bibliographystyle{dinat}
+\bibliography{lit}
+\end{document}
