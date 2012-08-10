@@ -9,4 +9,4 @@ nick:
 pcmoritz:
 	g++ pcmoritz_main.cc print_field.cc field.cc move.cc direction.cc possible_moves.cc -o a.out
 Uli:
-	g++ UrKI01.cc print_field.cc field.cc move.cc direction.cc possible_moves.cc -o a.out
+	g++ abalone.cc print_field.cc field.cc move.cc direction.cc possible_moves.cc random_ki.hh Uli_ki.hh misc.hh -o a.out
