@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <vector>
 #include <limits>
+#include "Uli_ki.hh"
 
 int stonesa;
 int stonesb;
@@ -69,32 +70,15 @@ public:
 	}
 };
 
-double UH1(field& f, int player) {
-	double Bewertung=0;
-	if(stonesa> count_stones((int)other_player((stone)player),f)){
-			Bewertung+=100;
-		}
-	if(stonesb < count_stones(player,f)){
-			Bewertung-=1000;
-		}
-  	for(int i = 0; i <= N+1; ++i) {
-		for(int j = 0; j <= N+1; ++j){
-			int r;
-			if (i>=5 && j>=5) {r= std::max(i-5,j-5);}
-			if (i<=5 && j<=5) {r= std::max(abs(i-5),abs(j-5));}
-			if ((i>=5 && j<=5) || (i<=5 && j>=5)) {r = abs(i-j);}
-			if (f.get_stone(i, j)==player) {Bewertung+=-pow((1+r),2);}
-			if ((f.get_stone(i, j)!=player) &&(f.get_stone(i, j)!=EMPTY)) {Bewertung-=-pow((1+r),2);}
-		}  
-	}
-return Bewertung;
-}
+double estimator(field& f, stone player) {
+	return Uli01_rate_move(f, player) + 4 * Uli02_rate_move(f, player)
+		+ Uli03_rate_move(f, player) + Uli04_rate_move(f, player);
 
 // factor is 1 if we are maximizing and -1 if we are minimizing
 // and we are "level" levels down the tree
 double minmax(field f, stone player, int factor, int level) {
 	if(level > 2)
-		return UH1(f, (int)player);
+		return estimator(f, player);
 	
 	std::list<move> list;
 	possible_moves(f, player, &list);

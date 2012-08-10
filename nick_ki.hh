@@ -4,7 +4,7 @@
 
 double rate_move(field& f, int player,double *param) {
 	double Bewertung=0;
-	if(player==1)//std::cout<<param[3]<<"\t"<<count_stones(player+1,f)<<std::endl;
+	//if(player==1)//std::cout<<param[3]<<"\t"<<count_stones(player+1,f)<<std::endl;
 	if(player==1) {
 		if(param[3]> count_stones(player+1,f)){
 			Bewertung+=100*param[2];
@@ -48,7 +48,7 @@ public:
 		double Bewertung = 0;
 		double temp = -100000;
 		 
-		for (int n=0;n<list.size();n++) {
+		for (size_t n=0;n<list.size();n++) {
 			field f_hyp=copy_field(f);
 			if(player==1) {
 				param[3] = count_stones(player+1,f);

@@ -1,1 +1,26 @@
-Heuristik
+Heuristiken werden in der Informatik eingesetzt, um den Rechenaufwand zu für
+die Lösung eines Problems gering zu halten. Mit dem Einsatz einer Heuristik wird
+auf die Garantie einer optimalen Lösung verzichtet, die z.B. beim systematischen 
+überprüfen alles Spielabläufe entstehen würde. Dafür wird die Laufzeit des 
+Programmes durch verschiedene Faustregeln und Schätzungen bewertet und der Zug 
+ausgeführt, der nach wenigen Zügen zur besten Bewertung führt.
+Für die Bewertung einer Stellung, kamen folgende Bewertungskriterien
+zu Einsatz:
+\begin{itemize}
+	\item Wie weit sind die Steine in der Mitte des Brettes?
+	\item Wie sehr befinden sich die eigenen Steine auf einem Haufen?
+	\item Können gegnerische Steine geschlagen werden?
+	\item Was für günstige/ungüstige Muster kommen an der Grenze der zwei Spieler vor?
+\end{itemize}
+Mit diesen Kriterien wurde jeder Stellung eine "Energie" zugeordnet, die wie folgt
+berechnet wurde:
+\begin{align*}
+	H_{ges} &= H_{eigen} + H_{surface} + H_{interface} + V(r)\\
+H_{eigen} &=  \lambda_{1} \sum_{(i,j)} \rm{Spielerfarbe}(i,j)\\
+H_{surface} &= \lambda_{2} \sum_{(i,j)} \sum_{(p,q)} \left \langle (i,j)\right| \left|  pq\right\rangle  \delta((p,q) \; \; \rm{ist \;leer})\\
+H_{interface} &= \lambda_{3} \sum_{\rm{Muster}} \sum_{\rm{Richtungen}} \delta( \text{wenn Muster gefunden}) \\\ 
+V(r) &= \lambda_{4}  \sum_{(i,j)}  V(r(i,j))
+\end{align*}
+Jede hypothetische Stellung, die nach einem möglichen Zug entstehen wird bewertet
+und die Züge bevorzugt, die Hamiltonfunktion maximieren.
+
