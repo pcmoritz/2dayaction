@@ -71,7 +71,7 @@ int main() {
 	field f = start_field();
 	
 	Uli_player player_one("Black", BLACK,1,2,1);
-	alpha_beta_player player_two("White", WHITE);
+	alpha_beta_player_extended player_two("White", WHITE);
 
 	func(f,player_one,player_two);
 }
