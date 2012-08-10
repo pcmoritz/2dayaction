@@ -25,94 +25,98 @@ public:
 		return read_move();
 	}
 };
-struct game_stats {
-	stone winning_color;
-	int moves;
-};
 
-template <class player_one,class player_two>
-game_stats play_game(field Field,player_one p1,player_two p2) {
-	move player_move;
-	int moves=0;
-	while(!check_victory(Field)) {
-		player_move =p1(Field);
-		do_move(Field,player_move);
-		print_field(Field);
-		moves+=1;
-		if(check_victory(Field)) {
-			game_stats ret;
-			ret.moves = moves;
-			ret.winning_color = check_victory(Field);		
-		return ret;
+<<<<<<< HEAD
+int count_stones(int color,field &f) {
+	int tmp = 0;
+	for(int i=0;i<11;i++) {
+		for(int j=0;j<11;j++) {
+			if(f.is_pos_inside(i, j)) {
+				if(f.get_stone(i,j)==color) tmp+=1;
+
+			} else {
+				f.set_stone(i,j,EMPTY);
+			}	
 		}
-		player_move =p2(Field);
-		do_move(Field,player_move);
-		print_field(Field);
 	}
-	game_stats ret;
-	ret.moves = moves;
-	ret.winning_color = check_victory(Field);
-	return ret;
+	return tmp;
 }
 
-template <class player_one,class player_two>
-void func(field Field,player_one p1,player_two p2) {
-	//player_move = Method(Field);
-	game_stats tmp= play_game(Field,p1,p2);
-	
-	std::cout<<tmp.winning_color<<"\t"<<tmp.moves<<std::endl;
+bool check_victory(field &f){
+	if(count_stones(WHITE,f)<7){
+		std::cout<<"BLACK won!"<<std::endl;
+		print_field(f);
+		return true;
+	}
+	if(count_stones(BLACK,f)<7){
+		std::cout<<"White won!"<<std::endl;	
+		print_field(f);
+		return true;
+	}
 }
-	
+=======
+>>>>>>> 279deced863f4dbf752f9e3dd7dd3724278bdc33
 
 int main() {
 	std::srand(time(NULL));
-	field f;
-	//f.set_stone(5,8,WHITE);
-	f.set_stone(5,7,WHITE);
-	f.set_stone(5,6,WHITE);
-	f.set_stone(5,5,BLACK);
-	f.set_stone(5,4,BLACK);
-	f.set_stone(5,3,BLACK);
-
+	field f = start_field();
 	
-<<<<<<< HEAD
-	//f.set_stone(3,6,WHITE);
-	f.set_stone(3,5,WHITE);
-	f.set_stone(3,4,BLACK);
-	f.set_stone(3,3,BLACK);
-
-	f.set_stone(7,8,WHITE);
-	f.set_stone(7,7,BLACK);
-	f.set_stone(7,6,BLACK);
-	f.set_stone(7,5,BLACK);
-	print_field(f);	
-
-	/*nick_player player_one("Black", BLACK,1,2,1);
-	alpha_beta_player player_two("White", WHITE);
-	func(f,player_one,player_two);*/
-=======
-<<<<<<< HEAD
-	nick_player player_one("Black", BLACK,1,2,1);   // rot
-	Uli_player player_two("White", WHITE);		// grün
-=======
-	nick_player player_one("Black", BLACK,1,2,1);
-	alpha_beta_player_extended player_two("White", WHITE);
-	func(f,player_one,player_two);
->>>>>>> b0f1d2aa0d4c10f03300613b8734b8ec53285e86
->>>>>>> bf9a41f181e3ba89a4019ee1f9f94b1304f36b9c
+	alpha_beta_player player_one = alpha_beta_player("Black", BLACK);
+	nick_player player_two("White", WHITE);
 	
-	/*move player_move;
+	move player_move;
 	for(;;) {
+		//print_field(f);
 		player_move = player_one(f);
-		do_move(f,player_move);
-		print_field(f);
-		std::getchar();
+		do_move(f,player_move);	
+		//print_field(f);
+		//print_move(player_move);
+		//do_move(f,player_move);
+<<<<<<< HEAD
+		/*if(move_valid(player_move,f)){
+			do_move(f,player_move);	
+		}else{
+			std::cout<<"Black cheated"<<std::endl;
+			print_field(f);
+			print_move(player_move);
+			std::getchar();
+		}*/
+=======
+    //if(move_valid(player_move,f)){
+			do_move(f,player_move);	
+		//}else{
+			//std::cout<<"Black cheated"<<std::endl;
+			//print_field(f);
+			//print_move(player_move);
+			//std::getchar();
+		//}
+>>>>>>> 279deced863f4dbf752f9e3dd7dd3724278bdc33
 		if(check_victory(f)) break;
-	
+		//print_field(f);
+		//std::getchar();
+		//print_field(f);
 		player_move = player_two(f);
-		do_move(f,player_move);
-		print_field(f);
-		std::getchar();
+<<<<<<< HEAD
+		do_move(f,player_move);	
+		/*if(move_valid(player_move,f)){
+			do_move(f,player_move);
+		}else{
+			std::cout<<"White cheated"<<std::endl;
+			print_field(f);
+			print_move(player_move);
+			std::getchar();	
+		}*/
+=======
+		//if(move_valid(player_move,f)){
+			do_move(f,player_move);
+		//}else{
+	//		std::cout<<"White cheated"<<std::endl;
+	//		print_field(f);
+	//		print_move(player_move);
+	//		std::getchar();	
+	//	}
+>>>>>>> 279deced863f4dbf752f9e3dd7dd3724278bdc33
 		if(check_victory(f)) break;
-	}*/
+		//std::getchar();
+	}
 }

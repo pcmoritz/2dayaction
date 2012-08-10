@@ -1,0 +1,83 @@
+Einführung
+abalone
+Koordinaten
+Grillen
+possible moves
+Heuristiken
+
+alpha-beta vs minmax
+git	Reihenfolge mergeprozess
+
+
+Heuristiken
+
+    Heuristiken werden in der Informatik eingesetzt, um den Rechenaufwand zu für
+die Lösung eines Problems gering zu halten. Mit dem Einsatz einer Heuristik wird
+auf die Garantie einer optimalen Lösung verzichtet, die z.B. beim systematischen 
+überprüfen alles Spielabläufe entstehen würde. Dafür wird die Laufzeit des 
+Programmes durch verschiedene Faustregeln und Schätzungen bewertet und der Zug 
+ausgeführt, der nach wenigen Zügen zur besten Bewertung führt.
+Für die Bewertung einer Stellung, kamen folgende Bewertungskriterien
+zu Einsatz:
+1. Wie weit sind die Steine in der Mitte des Brettes?
+2. Wie sehr befinden sich die eigenen Steine auf einem Haufen?
+3. Können gegnerische Steine geschlagen werden?
+4. Was für günstige/ungüstige Muster kommen an der Grenze der zwei Spieler vor?
+
+Mit diesen Kriterien wurde jeder Stellung eine "Energie" zugeordnet, die wie folgt
+berechnet wurde:
+
+H_ges = H_eigen + H_surface + H_interface + V(r)
+
+H_eigen =  l1 * Sum (ij) Farbe 
+H_surface = l2 Sum (ij) Sum (pq) <ij,pq> delta frei
+H_interface = l3 *Sum (Muster) * Sum (Richtungen) delta  Mustervorhanden
+V(r) = l4(Farbe) *Sum(ij) V(r(i,j)) 
+
+Jede hypothetische Stellung, die nach einem möglichen Zug entstehen wird bewertet
+und die Züge bevorzugt, die Hamiltonfunktion maximieren.
+
+Abalone
+
+Abalone ist ein Brettspiel für zwei Spieler. Jeder Spieler besitzt dazu in der 
+Grundstellung 14 Spielsteine auf einem hexagonalen Brett. Abwechselnd sind Züge mit einem, zwei oder drei linear
+zusammenhängenden Steinen in die selbe Richtung erlaubt. In der Regel kann ein Zug
+von gegnerischen Steinen blockiert werden. Eine Möglichkeit, gegnerische Steine
+zu verschibene, stellen die sogenannten Sumitos dar. Dabei werden zwei oder drei 
+Kugeln in einer Reihe bewegt und können eine Minderheit gegnerischer Kugeln
+wegschieben (also 3 gegen 1, 3 gegen 2, oder 2 gegen 1). Ziel des Spiel ist es 6 Spielsteine
+des Gegners vom Brett zu schieben.
+Abalone wird von der Denksportorganisation gefördert und ist Bestandteil der 
+Denk-Sport-Plympiade
+
+Für die Notation unserer Züge wurden Einheitsvektoren eingeführt die in dem hexagonalen 
+Gitter im 120°-Winkel stehen das gesamte Spielfeld aufspannen.
+
+mögliche Züge finden.
+
+Viel Zeit wurde durch das Schreiben einer Funktion benötigt, die eine Liste aller möglichen
+Züge für eine gegebene Spielsituation zurückgibt. Dazu wird das Spielfeld nach eingenen
+Steinen gescannt, mögliche Nachbarsteine gesucht, und für alle Richtungen auf dem Brett
+untersucht, ob sich die Steine in diese Richtung bewegen dürfen.
+
+Einführung
+
+Sinn der 2dayaction war, sich innerhalb von 48 Stunden intensiv mit einem Thema, in unserem 
+Fall die Programmierung einer KI für Abalone, zu beschäftigen und dabei möglichst viel zu lernen.
+Wir haben neben den Erfahrungen im Programmierung viel über die Arbeitsteilung und 
+die Verwaltung von (eigentlich nur sehr großen) Programmierprojekten, die Funktionsweise von SpieleKIs und das Freuermachen
+ohne Feuerzeug gelernt.
+Innerhalb der zwei Tagen sind mehrere Versionen von KIs entstandanden, 
+die zunächst nur zufällige Züge ausführte, in unserer Endversion aber drei Züge
+im Voraus mit Alpha-Beta-Suche rechnete und durchaus brauchbaren Ergebnissen lieferte.
+
+
+
+Leben während der 2dayaction
+Innerhalb der zwei Tage haben wir stets versucht uns gesund zu ernähren und alles was wir
+zum Überleben brauchten in der Natur oder der nächten Pizzaria zu finden.
+
+
+Zur Verwaltung unseres Projektes haben wir die Versionsverwaltungssoftware "Git" verwendet.
+Ursprünglich wurde Git für die Quellcode-Verwaltung des Linux-Kernels entwickelt 
+und ist eine freie Software.

@@ -2,7 +2,7 @@
 #include "field.hh"
 #include <sstream>
 #include <cstdio>
-#include "alpha-beta-extended.hh"
+#include "alpha-beta-ki.hh"
 #include <time.h>
 #include "nick_ki.hh"
 #include "Uli_ki.hh"
@@ -66,6 +66,8 @@ int main() {
 	std::srand(time(NULL));
 	field f = start_field();
 	
+// 	nick_player player_one("Black", BLACK,1,2,1);   // rot
+// 	Uli_player player_two("White", WHITE);		// grün
 
 	nick_player player_one("Black", BLACK,1,2,1);   // rot
 	Uli_player player_two("White", WHITE);		// grün
@@ -73,6 +75,7 @@ int main() {
 	nick_player player_one("Black", BLACK,1,2,1);
 	alpha_beta_player player_two("White", WHITE);
 	func(f,player_one,player_two);
+
 	
 	/*move player_move;
 	for(;;) {
